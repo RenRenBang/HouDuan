@@ -709,7 +709,7 @@ public interface AppointmentDao {
 ------------
 
 `dao`层写完了，接下来`test`对应的`package`写我们测试方法吧。
-因为我们之后会写很多测试方法，在测试前需要让程序读入spring-dao和mybatis等配置文件，所以我这里就抽离出来一个`BaseTest`类，只要是测试方法就继承它，这样那些繁琐的重复的代码就不用写那么多了~<重要>
+因为我们之后会写很多测试方法，在测试前需要让程序读入spring-dao和mybatis等配置文件，所以我这里就抽离出来一个`BaseTest`类，只要是测试方法就继承它，这样那些繁琐的重复的代码就不用写那么多了~
 
 **BaseTest.java**
 ``` java

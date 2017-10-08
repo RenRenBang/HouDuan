@@ -6,7 +6,9 @@
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>ssm Maven Webapp</name>
-	<url>http://github.com/liyifeng1994/ssm</url>
+	<properties>  
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>  
+  </properties>  
 	<dependencies>
 		<!-- 单元测试 -->
 		<dependency>
@@ -143,5 +145,6 @@
 	</dependencies>
 	<build>
 		<finalName>ssm</finalName>
+		
 	</build>
 </project>
