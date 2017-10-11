@@ -1,20 +1,11 @@
 package com.soecode.lyf.web;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
-
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
-
-import com.mysql.fabric.Response;
-import com.soecode.lyf.entity.Book;
 import com.soecode.lyf.entity.Cuser;
 import com.soecode.lyf.service.CuserService;
 
@@ -30,17 +21,17 @@ public class CuserController {
 		if(cuser != null) {
 			
 			mav.addAttribute("cuser",cuser);
-			//��װΪjson���ݡ�
-			return "loginSuccess";
+			//参数需要返回对象列表，并且打包为json格式数据response返回到前端。
+			return "cuser/loginSuccessJsp";
 			
 		}
-		
-		return "login";
+		//这个是跳转的页面，没有路径前缀和文件后缀，是因为在spring-web.xml中做了统一的配置
+		return "cuser/loginJsp";
 	}
 	
-	@RequestMapping(value = "/tz", method = RequestMethod.GET)
-	private String tz() {
-		System.out.println("sasdfasf");
-		return "login";
+	@RequestMapping(value = "/begin", method = RequestMethod.GET)
+	private String begin() {
+		System.out.println("通过index页面开始进入web-inf目录下的页面");
+		return "cuser/loginJsp";
 	} 
 }

@@ -12,6 +12,7 @@ public class Cuser {
 	private String uidnumber;
 	private Blob uimage;
 	private Blob uphotopath;
+	
 	public Cuser(int uid, String uname, String upassword, String uphone, String unickname, String uidnumber,
 			Blob uimage, Blob uphotopath) {
 		super();

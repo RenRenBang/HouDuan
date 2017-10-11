@@ -11,6 +11,7 @@ import com.soecode.lyf.service.CuserService;
 public class CuserServiceImpl implements CuserService{
 
 	@Autowired
+	//需要dao对象会自动注入
 	private CuserDao cuserdao;
 	
 	@Override
