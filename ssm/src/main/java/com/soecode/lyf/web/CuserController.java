@@ -20,6 +20,9 @@ public class CuserController {
 		Cuser cuser = cuserService.login(uphone,upassword);
 		if(cuser != null) {
 			
+			//测试接收到的数据
+			System.out.println(cuser.toString());
+			
 			mav.addAttribute("cuser",cuser);
 			//参数需要返回对象列表，并且打包为json格式数据response返回到前端。
 			return "cuser/loginSuccessJsp";
