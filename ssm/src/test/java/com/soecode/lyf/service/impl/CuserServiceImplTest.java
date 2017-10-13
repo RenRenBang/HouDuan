@@ -18,5 +18,29 @@ public class CuserServiceImplTest extends BaseTest{
 		Cuser user = cuserService.login("15012341234", "123456");
 		System.out.println(user);
 	}
+	
+	@Test
+	public void addCuserTest() throws Exception{
+		Cuser cuser = new Cuser();
+		cuser.setPassword("123456");
+		cuser.setUphone("15112341234");
+		cuserService.addCuser(cuser);
+		
+	}
+	
+	
+	@Test
+	public void findByid()throws Exception{
+		int uid = 3;
+		Cuser cuser = cuserService.findByid(uid);
+		System.out.println(cuser);
+	}
+	@Test
+	public void updateCuserTest()throws Exception{
+		int uid = 2;
+		Cuser cuser = cuserService.findByid(uid);
+		cuser.setPassword("111111");
+		cuserService.updateCuser(cuser);
+	}
 
 }

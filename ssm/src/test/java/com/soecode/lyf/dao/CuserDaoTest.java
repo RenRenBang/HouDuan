@@ -29,4 +29,19 @@ public class CuserDaoTest extends BaseTest{
 		cuserdao.addCuser(cuser);
 		
 	}
+	
+	
+	@Test
+	public void findByid()throws Exception{
+		int uid = 2;
+		Cuser cuser = cuserdao.findByid(uid);
+		System.out.println(cuser);
+	}
+	@Test
+	public void updateCuserTest()throws Exception{
+		int uid = 2;
+		Cuser cuser = cuserdao.findByid(uid);
+		cuser.setPassword("654321");
+		cuserdao.updateCuser(cuser);
+	}
 }

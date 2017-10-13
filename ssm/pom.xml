@@ -148,7 +148,6 @@
 			<artifactId>maven-resources-plugin</artifactId> 
 			<version>2.6</version> 
 		</dependency>
-		
 	</dependencies>
 	<build>
 		<finalName>ssm</finalName>

@@ -20,4 +20,22 @@ public class CuserServiceImpl implements CuserService{
 		return cuserdao.login(uphone, password);
 	}
 
+	@Override
+	public void addCuser(Cuser cuser) {
+		// TODO Auto-generated method stub
+		cuserdao.addCuser(cuser);
+	}
+
+	@Override
+	public void updateCuser(Cuser cuser) {
+		// TODO Auto-generated method stub
+		cuserdao.updateCuser(cuser);
+	}
+
+	@Override
+	public Cuser findByid(int uid) {
+		// TODO Auto-generated method stub
+		return cuserdao.findByid(uid);
+	}
+
 }
