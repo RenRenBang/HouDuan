@@ -4,21 +4,19 @@ Source Host: localhost
 Source Database: ssm
 Target Host: localhost
 Target Database: ssm
-Date: 2017/10/12 20:11:34
+Date: 2017/10/12 20:11:13
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
--- Table structure for transaction
+-- Table structure for collection
 -- ----------------------------
-DROP TABLE IF EXISTS `transaction`;
-CREATE TABLE `transaction` (
-  `tid` int(11) NOT NULL AUTO_INCREMENT,
-  `oid` int(11) DEFAULT NULL,
+DROP TABLE IF EXISTS `collection`;
+CREATE TABLE `collection` (
+  `cid` int(11) NOT NULL,
   `uid` int(11) DEFAULT NULL,
-  `t_time` time DEFAULT NULL,
-  `release_uid` int(11) DEFAULT NULL,
-  PRIMARY KEY (`tid`)
+  `oid` int(11) DEFAULT NULL,
+  PRIMARY KEY (`cid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
