@@ -24,9 +24,19 @@
 		photo_path,
 		password,
 		profile
-		)values(#{uphone},#{name},#{nickname},#{id_number},#{image},#{photo_path},#{password},#{profile})
+		)values(#{uphone},#{name},#{nickname},#{idNumber},#{image},#{photoPath},#{password},#{profile})
 	</insert>
 	
 	<!-- void updatecuser(Cuser cuser); -->
-	<update id="updateCuser"></update>
+	<update id="updateCuser">
+		update cuser set
+		password=#{password}
+		where uid = #{uid}
+	</update>
+	<!-- Cuser findByid(int uid); -->
+	<select id="findByid" parameterType="com.soecode.lyf.entity.Cuser" resultType="com.soecode.lyf.entity.Cuser">
+		select * from cuser 
+		where 
+		uid = #{uid}
+	</select>
 </mapper>

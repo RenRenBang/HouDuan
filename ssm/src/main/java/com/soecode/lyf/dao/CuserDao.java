@@ -14,4 +14,7 @@ public interface CuserDao {
 	//修改
 	void updateCuser(Cuser cuser);
 	
+	//根据id查用户
+	Cuser findByid(int uid);
+	
 }
