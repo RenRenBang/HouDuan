@@ -7,16 +7,15 @@ import com.soecode.lyf.BaseTest;
 import com.soecode.lyf.entity.Cuser;
 import com.soecode.lyf.service.CuserService;
 
+
 public class CuserServiceImplTest extends BaseTest{
 
 	@Autowired
-	private CuserService cuserservice;
+	private CuserService cuserService;
 	
 	@Test
 	public void login() throws Exception{
-		String uphone = "15012341234";
-		String password = "123456";
-		Cuser user = cuserservice.login(uphone, password);
+		Cuser user = cuserService.login("15012341234", "123456");
 		System.out.println(user);
 	}
 

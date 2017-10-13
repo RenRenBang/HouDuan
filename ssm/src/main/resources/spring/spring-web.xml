@@ -9,10 +9,11 @@
 	http://www.springframework.org/schema/context/spring-context.xsd
 	http://www.springframework.org/schema/mvc
 	http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+	
 	<!-- 配置SpringMVC -->
 	<!-- 1.开启SpringMVC注解模式 -->
 	<!-- 简化配置： 
-		(1)自动注册DefaultAnootationHandlerMapping,AnotationMethodHandlerAdapter 
+		(1)自动注册DefaultAnnotationHandlerMapping,AnnotationMethodHandlerAdapter 
 		(2)提供一些列：数据绑定，数字和日期的format @NumberFormat, @DateTimeFormat, xml,json默认读写支持 
 	-->
 	<mvc:annotation-driven />
@@ -26,7 +27,11 @@
 	 <!-- 3.配置jsp 显示ViewResolver -->
 	 <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 	 	<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
-	 	<property name="prefix" value="/WEB-INF/jsp/common/" />
+	 	<!-- 注意这里，前缀的配置，在web-inf里区分不同模块的不同页面，不能都放在common里 
+	 		所以跳转页面都加上 文件夹名，eg:cuser/login
+	 		为了区分jsp与control的同名问题，所有页面使用  命令后加“jsp标识”，eg:loginJsp。
+	 	-->
+	 	<property name="prefix" value="/WEB-INF/jsp/" />
 	 	<property name="suffix" value=".jsp" />
 	 </bean>
 	 

@@ -12,6 +12,7 @@
 		<setting name="useColumnLabel" value="true" />
 
 		<!-- 开启驼峰命名转换:Table{create_time} -> Entity{createTime} -->
+		<!-- 这个功能实用，将表字段中的下划线，orm时转换为对象的驼峰命名法 -->
 		<setting name="mapUnderscoreToCamelCase" value="true" />
 	</settings>
 </configuration>

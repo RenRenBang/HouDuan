@@ -5,13 +5,7 @@ import com.soecode.lyf.entity.Cuser;
 public interface CuserDao {
 	
 	
-	//登录
-	Cuser login(String uphone,String password);
+	//定义每个entity对应的dao接口，但是不实现，spring依赖的方式，在mybatis的每个对象对应的配置文件中实现。
 	
-	//注册
-	void addcuser(Cuser cuser);
-	
-	//修改
-	void updatecuser(Cuser cuser);
-	
+	Cuser login(String uphone,String upassword);
 }

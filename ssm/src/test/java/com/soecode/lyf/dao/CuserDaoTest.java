@@ -11,22 +11,14 @@ public class CuserDaoTest extends BaseTest{
 	@Autowired
 	private CuserDao cuserdao;
 	
-	
 	@Test
 	public void login() throws Exception{
-		
+
 		String uphone = "15012341234";
-		String password = "123456";
-		Cuser user = cuserdao.login(uphone, password);
+		String upassword = "123456";
+		Cuser user = cuserdao.login(uphone,upassword);
 		System.out.println(user);
 	}
-
-	@Test
-	public void addcuser() throws Exception{
-		Cuser cuser = new Cuser();
-		cuser.setPassword("123456");
-		cuser.setUphone("15112341234");
-		cuserdao.addcuser(cuser);
-		
-	}
+	
+	
 }

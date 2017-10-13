@@ -5,6 +5,7 @@
 	http://www.springframework.org/schema/beans/spring-beans.xsd
 	http://www.springframework.org/schema/context
 	http://www.springframework.org/schema/context/spring-context.xsd">
+	
 	<!-- 配置整合mybatis过程 -->
 	<!-- 1.配置数据库相关参数properties的属性：${url} -->
 	<context:property-placeholder location="classpath:jdbc.properties" />
@@ -41,6 +42,7 @@
 	</bean>
 
 	<!-- 4.配置扫描Dao接口包，动态实现Dao接口，注入到spring容器中 -->
+	<!-- 这个第一次见，dao只负责定义接口，dao接口的实现会自动注入，实现的代码在mybatis的mapper配置文件中对应即可 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<!-- 注入sqlSessionFactory -->
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />

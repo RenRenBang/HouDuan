@@ -10,23 +10,6 @@
 		where 
 		uphone = #{param1} 
 		and 
-		password = #{param2}
+		upassword = #{param2}
 	</select>
-	
-	<!-- int addcuser(Cuser cuser); -->
-	<insert id="addcuser" parameterType="com.soecode.lyf.entity.Cuser">
-		insert into cuser(
-		uphone,
-		name,
-		nickname,
-		id_number,
-		image,
-		photo_path,
-		password,
-		profile
-		)values(#{uphone},#{name},#{nickname},#{id_number},#{image},#{photo_path},#{password},#{profile})
-	</insert>
-	
-	<!-- void updatecuser(Cuser cuser); -->
-	<update id="updatecuser"></update>
 </mapper>

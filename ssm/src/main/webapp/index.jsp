@@ -9,7 +9,7 @@
 <body>
 
 	<%
-		response.sendRedirect("tz");
+		response.sendRedirect("begin");
 	%>
 </body>
 </html>
