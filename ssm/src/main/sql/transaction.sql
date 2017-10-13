@@ -16,7 +16,7 @@ CREATE TABLE `transaction` (
   `tid` int(11) NOT NULL AUTO_INCREMENT,
   `oid` int(11) DEFAULT NULL,
   `uid` int(11) DEFAULT NULL,
-  `t_time` timestamp DEFAULT NULL,
+  `t_time` datetime DEFAULT NULL,
   `release_uid` int(11) DEFAULT NULL,
   PRIMARY KEY (`tid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
