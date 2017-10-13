@@ -16,8 +16,8 @@ public class CuserController {
 	private CuserService cuserService;
 	
 	@RequestMapping(value = "/to_login", method = RequestMethod.POST)
-	private String login( Model mav,@RequestParam("uphone") String uphone,@RequestParam("upassword") String upassword) {
-		Cuser cuser = cuserService.login(uphone,upassword);
+	private String login( Model mav,@RequestParam("uphone") String uphone,@RequestParam("password") String password) {
+		Cuser cuser = cuserService.login(uphone,password);
 		if(cuser != null) {
 			
 			//测试接收到的数据

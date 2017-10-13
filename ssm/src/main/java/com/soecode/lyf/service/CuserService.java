@@ -4,6 +4,6 @@ import com.soecode.lyf.entity.Cuser;
 
 public interface CuserService {
 	
-	Cuser login(String uphone,String upassword);
+	Cuser login(String uphone,String password);
 
 }

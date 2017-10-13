@@ -15,9 +15,9 @@ public class CuserServiceImpl implements CuserService{
 	private CuserDao cuserdao;
 	
 	@Override
-	public Cuser login(String uphone, String upassword) {
+	public Cuser login(String uphone, String password) {
 		// TODO Auto-generated method stub
-		return cuserdao.login(uphone, upassword);
+		return cuserdao.login(uphone, password);
 	}
 
 }

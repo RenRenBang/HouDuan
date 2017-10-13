@@ -16,7 +16,7 @@
 		</tr>
 		<tr>
 			<td>密码:</td>
-			<td><input type="password" name="upassword"></td>
+			<td><input type="password" name="password"></td>
 		</tr>
 	</table>
 	<input type="submit" value="提交">
