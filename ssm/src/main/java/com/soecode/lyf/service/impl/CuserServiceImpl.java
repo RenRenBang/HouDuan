@@ -38,4 +38,10 @@ public class CuserServiceImpl implements CuserService{
 		return cuserdao.findByid(uid);
 	}
 
+	@Override
+	public void updateImgeById(int uid,String image) {
+		// TODO Auto-generated method stub
+		cuserdao.updateImgeById(uid,image);
+	}
+
 }
