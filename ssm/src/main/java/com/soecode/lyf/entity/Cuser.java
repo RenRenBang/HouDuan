@@ -26,9 +26,10 @@ public class Cuser {
 				+ idNumber + ", image=" + image + ", photo_path=" + photoPath + ", password=" + password
 				+ ", profile=" + profile + "]";
 	}
-	public Cuser(String uphone, String name, String nickname, String idNumber, String image, String photoPath,
+	public Cuser(int uid,String uphone, String name, String nickname, String idNumber, String image, String photoPath,
 			String password, String profile) {
 		super();
+		this.uid = uid;
 		this.uphone = uphone;
 		this.name = name;
 		this.nickname = nickname;

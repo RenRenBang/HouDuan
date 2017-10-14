@@ -6,5 +6,6 @@ encoding//src/main/resources=UTF-8
 encoding//src/main/resources/spring/spring-imge.xml=UTF-8
 encoding//src/main/webapp/WEB-INF/jsp/common/bootstrap.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/jsp/common/head.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/jsp/cuser/testcode.jsp=UTF-8
 encoding//src/test/java=UTF-8
 encoding/<project>=UTF-8

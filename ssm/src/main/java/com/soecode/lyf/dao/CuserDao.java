@@ -17,4 +17,8 @@ public interface CuserDao {
 	//根据id查用户
 	Cuser findByid(int uid);
 	
+	//修改头像
+	void updateImgeById(int uid,String image);
+
+	
 }

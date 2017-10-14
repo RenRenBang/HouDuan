@@ -30,7 +30,14 @@
 	<!-- void updatecuser(Cuser cuser); -->
 	<update id="updateCuser">
 		update cuser set
-		password=#{password}
+		uphone=#{uphone},
+		name=#{name},
+		nickname=#{nickname},
+		id_number=#{idNumber},
+		image=#{image},
+		photo_path=#{photoPath},
+		password=#{password},
+		profile=#{profile}
 		where uid = #{uid}
 	</update>
 	<!-- Cuser findByid(int uid); -->
@@ -39,4 +46,12 @@
 		where 
 		uid = #{uid}
 	</select>
+	
+	<!-- void updateImgeById(int uid,String image); -->
+	<update id="updateImgeById">
+		update cuser set
+		image=#{image}
+		where uid = #{uid}
+	</update>
+	
 </mapper>

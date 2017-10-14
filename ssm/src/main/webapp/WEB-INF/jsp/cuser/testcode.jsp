@@ -7,9 +7,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-	<%
-		response.sendRedirect("begin");
-	%>
+	
+	<form action="getCheckCode" method="post">
+		<input type="text" name="uphone" id="uphone"/>
+		<input type="submit" name="提交" />
+		
+	</form>
+	<form action="addCuser" method="post">
+		<table>
+			<tr><input type="submit" value="tijiao"> </tr>
+		</table>
+	</form>
 </body>
 </html>
