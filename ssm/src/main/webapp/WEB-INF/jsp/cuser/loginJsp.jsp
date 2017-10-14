@@ -9,6 +9,7 @@
 <body>
 
 <form action="to_login" method="post">
+<img src="http://47.95.214.71:80/image/0-0.gif">
 	<table border="1">
 		<tr>
 			<td>手机号:</td>

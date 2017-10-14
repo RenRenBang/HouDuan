@@ -30,4 +30,22 @@ public class CorderServiceImpl implements CorderService {
 		return corderDao.queryCorderBy(type, trade, title);
 	}
 
+	@Override
+	public void deleteCorderById(int oid) {
+		// TODO 自动生成的方法存根
+		corderDao.deleteCorderById(oid);
+	}
+
+	@Override
+	public Corder queryCorderById(int oid) {
+		
+		return corderDao.queryCorderById(oid);
+	}
+
+	@Override
+	public void updateNum(String num, int oid) {
+		// TODO 自动生成的方法存根
+		corderDao.updateNum(num, oid);
+	}
+
 }

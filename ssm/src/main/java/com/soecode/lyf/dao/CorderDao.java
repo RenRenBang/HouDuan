@@ -23,4 +23,11 @@ public interface CorderDao {
 	 * @return
 	 */
 	List<Corder> queryCorderBy(@Param("type") String type,@Param("trade") String trade,@Param("title") String title);
+	
+	Corder queryCorderById(int oid);
+	
+	void deleteCorderById(int oid);
+	
+	void updateNum(@Param("num") String num,@Param("oid") int oid);
+	
 }

@@ -7,7 +7,6 @@ public class Corder {
 	private int oid;
 	private String type;
 	private String trade;
-	private int uid;
 	private Date startTime;
 	private Date endTime;
 	private String title;
@@ -17,55 +16,31 @@ public class Corder {
 	private String address;
 	private int ocount;
 	private int isValid;
+	private int gmNum;
+	private int collNum;
+	
+//	private int uid;
+	
+	private Cuser cuser;
 	
 	public Corder(){}
 	
 	
-	
-	/* （非 Javadoc）
-	 * @see java.lang.Object#toString()
+
+	/**
+	 * @return cuser
 	 */
-	@Override
-	public String toString() {
-		return "Corder [oid=" + oid + ", type=" + type + ", trade=" + trade + ", uid=" + uid + ", startTime="
-				+ startTime + ", endTime=" + endTime + ", title=" + title + ", money=" + money + ", odescribe="
-				+ odescribe + ", ophotoPath=" + ophotoPath + ", address=" + address + ", ocount=" + ocount
-				+ ", isValid=" + isValid + "]";
+	public Cuser getCuser() {
+		return cuser;
 	}
 
 
 
 	/**
-	 * @param oid
-	 * @param type
-	 * @param trade
-	 * @param uid
-	 * @param startTime
-	 * @param endTime
-	 * @param title
-	 * @param money
-	 * @param odescribe
-	 * @param ophotoPath
-	 * @param address
-	 * @param ocount
-	 * @param isValid
+	 * @param cuser 要设置的 cuser
 	 */
-	public Corder(int oid, String type, String trade, int uid, Date startTime, Date endTime, String title, double money,
-			String odescribe, String ophotoPath, String address, int ocount, int isValid) {
-		super();
-		this.oid = oid;
-		this.type = type;
-		this.trade = trade;
-		this.uid = uid;
-		this.startTime = startTime;
-		this.endTime = endTime;
-		this.title = title;
-		this.money = money;
-		this.odescribe = odescribe;
-		this.ophotoPath = ophotoPath;
-		this.address = address;
-		this.ocount = ocount;
-		this.isValid = isValid;
+	public void setCuser(Cuser cuser) {
+		this.cuser = cuser;
 	}
 
 
@@ -106,18 +81,7 @@ public class Corder {
 	public void setTrade(String trade) {
 		this.trade = trade;
 	}
-	/**
-	 * @return uid
-	 */
-	public int getUid() {
-		return uid;
-	}
-	/**
-	 * @param uid 要设置的 uid
-	 */
-	public void setUid(int uid) {
-		this.uid = uid;
-	}
+	
 	/**
 	 * @return startTime
 	 */
@@ -226,6 +190,22 @@ public class Corder {
 	public void setIsValid(int isValid) {
 		this.isValid = isValid;
 	}
+
+
+
+	/* （非 Javadoc）
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Corder [oid=" + oid + ", type=" + type + ", trade=" + trade + ", startTime=" + startTime + ", endTime="
+				+ endTime + ", title=" + title + ", money=" + money + ", odescribe=" + odescribe + ", ophotoPath="
+				+ ophotoPath + ", address=" + address + ", ocount=" + ocount + ", isValid=" + isValid + ", gmNum="
+				+ gmNum + ", collNum=" + collNum + ", cuser=" + cuser + "]";
+	}
+
 	
+
+
 	
 }
