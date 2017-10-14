@@ -1,40 +1,39 @@
 package com.soecode.lyf.dao;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.fail;
-
 import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.annotation.Order;
-
 import com.soecode.lyf.BaseTest;
 import com.soecode.lyf.entity.Corder;
+import com.soecode.lyf.entity.Cuser;
 
 public class CorderDaoTest extends BaseTest{
 
 	@Autowired
 	CorderDao corderDao;
 	
+	@Autowired
+	CuserDao cuserDao;
+	
 	@Test
 	public void corderAddTest() {
+		Cuser cuser = new Cuser();
+		cuser = cuserDao.findByid(1);
 		Corder corder = new Corder();
-		corder.setAddress("内蒙古呼和浩特市回民区内蒙古财经大学西区");
+		corder.setAddress("内蒙古蒙牛集团三期工厂");
 		corder.setEndTime(new Timestamp(0));
 		corder.setIsValid(0);
-		corder.setMoney(12.34);
-		corder.setOcount(5);
-		corder.setOdescribe("星期天对实验室进行大扫除");
-		corder.setOphotoPath("/root/aa/abc.jpg");
-		corder.setTitle("大扫除");
-		corder.setTrade("家政");
-		corder.setType("s");
-		corder.setUid(1);
+		corder.setMoney(45.12);
+		corder.setOcount(1);
+		corder.setOdescribe("门前扫雪");
+		corder.setOphotoPath("/root/abc.jpg");
+		corder.setTitle("爱心活动");
+		corder.setTrade("公益");
+		corder.setType("n");
+		//corder.setUid(1);
+		corder.setCuser(cuser);
 		System.out.println(corder.toString());
 		corderDao.addCorder(corder);
 	}
@@ -50,4 +49,18 @@ public class CorderDaoTest extends BaseTest{
 		}
 	}
 
+	@Test
+	public void queryCorderByIdTest(){
+		int oid = 1;
+		Corder corder = corderDao.queryCorderById(oid);
+		System.out.println(corder.getTitle());
+		System.out.println(corder.getCuser().getName());
+	}
+	
+	@Test
+	public void deleteCorderByIdTest(){
+		int oid = 10;
+		corderDao.deleteCorderById(oid);
+		
+	}
 }

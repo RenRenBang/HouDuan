@@ -5,43 +5,12 @@ import java.util.Date;
 public class Transaction {
 
 	private int tid;
-	private int oid;
-	private int uid;
+	private Corder corder;
+	private Cuser cuser;
 	private Date tTime;
-	private int releaseUid;
 	
 	
 	public Transaction(){}
-	
-	
-	
-	/* （非 Javadoc）
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "Transaction [tid=" + tid + ", oid=" + oid + ", uid=" + uid + ", tTime=" + tTime + ", releaseUid="
-				+ releaseUid + "]";
-	}
-
-
-
-	/**
-	 * @param tid
-	 * @param oid
-	 * @param uid
-	 * @param tTime
-	 * @param releaseUid
-	 */
-	public Transaction(int tid, int oid, int uid, Date tTime, int releaseUid) {
-		super();
-		this.tid = tid;
-		this.oid = oid;
-		this.uid = uid;
-		this.tTime = tTime;
-		this.releaseUid = releaseUid;
-	}
-
 
 
 	/**
@@ -50,60 +19,96 @@ public class Transaction {
 	public int getTid() {
 		return tid;
 	}
+
+
 	/**
 	 * @param tid 要设置的 tid
 	 */
 	public void setTid(int tid) {
 		this.tid = tid;
 	}
+
+
 	/**
-	 * @return oid
+	 * @return corder
 	 */
-	public int getOid() {
-		return oid;
+	public Corder getCorder() {
+		return corder;
 	}
+
+
 	/**
-	 * @param oid 要设置的 oid
+	 * @param corder 要设置的 corder
 	 */
-	public void setOid(int oid) {
-		this.oid = oid;
+	public void setCorder(Corder corder) {
+		this.corder = corder;
 	}
+
+
 	/**
-	 * @return uid
+	 * @return cuser
 	 */
-	public int getUid() {
-		return uid;
+	public Cuser getCuser() {
+		return cuser;
 	}
+
+
 	/**
-	 * @param uid 要设置的 uid
+	 * @param cuser 要设置的 cuser
 	 */
-	public void setUid(int uid) {
-		this.uid = uid;
+	public void setCuser(Cuser cuser) {
+		this.cuser = cuser;
 	}
+
+
 	/**
 	 * @return tTime
 	 */
 	public Date gettTime() {
 		return tTime;
 	}
+
+
 	/**
 	 * @param tTime 要设置的 tTime
 	 */
 	public void settTime(Date tTime) {
 		this.tTime = tTime;
 	}
+
+
 	/**
-	 * @return releaseUid
+	 * @return releaseCuser
 	 */
-	public int getReleaseUid() {
-		return releaseUid;
-	}
+	
+
+
 	/**
-	 * @param releaseUid 要设置的 releaseUid
+	 * @param tid
+	 * @param corder
+	 * @param cuser
+	 * @param tTime
+	 * @param releaseCuser
 	 */
-	public void setReleaseUid(int releaseUid) {
-		this.releaseUid = releaseUid;
+	public Transaction(int tid, Corder corder, Cuser cuser, Date tTime) {
+		super();
+		this.tid = tid;
+		this.corder = corder;
+		this.cuser = cuser;
+		this.tTime = tTime;
+		
 	}
+
+
+	/* （非 Javadoc）
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Transaction [tid=" + tid + ", corder=" + corder + ", cuser=" + cuser + ", tTime=" + tTime
+				+ "]";
+	}
+	
 	
 	
 }

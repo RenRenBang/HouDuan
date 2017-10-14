@@ -1,17 +1,19 @@
 package com.soecode.lyf.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import org.junit.runners.Parameterized.Parameter;
+
+import com.soecode.lyf.entity.Transaction;
 
 public interface TransactionDao {
 	
 	/**
-	 * 添加交易单，time在map文件的sql中添加系统时间。
-	 * @param oid
-	 * @param uid
-	 * @param releaseUid
+	 * 添加加交易订单
+	 * @param transaction
 	 * @return
 	 */
 	int addTransaction(@Param("oid") int oid,@Param("uid") int uid,@Param("releaseUid") int releaseUid);
-
+	List<Transaction> queryTransactionById(int uid);
 }

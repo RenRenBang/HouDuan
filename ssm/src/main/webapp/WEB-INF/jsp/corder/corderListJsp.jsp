@@ -10,7 +10,7 @@
 
 <h3>查询成功，循环显示信息。返回的json数据，在控制台打印输出了，控制台/。。。</h3>
 
-<a href="to_logout">推出登录</a>
+<a href="to_logout">退出登录</a>
 
 </body>
 </html>

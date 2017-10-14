@@ -26,5 +26,40 @@
 			</tr>
 		</table>
 	</form>
+	<form action="queryCorderById" method="get">
+		<table>
+			<tr>
+				<td><input type="text" name="oid"></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="id查询订单"></td>
+			</tr>
+		</table>
+	</form>
+	
+	<form action="queryTransactionById" method="get">
+		<table>
+			<tr>
+				<td><input type="text" name="uid"></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="tijiao"></td>
+			</tr>
+		</table>
+	</form>
+	
+	<form action="addTransaction" method="get">
+		<table>
+			<tr>
+				<td><input type="text" name="uid" ></td>
+			</tr>
+			<tr>
+				<td><input type="text" name="oid" ></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="tijiao"></td>
+			</tr>
+		</table>
+	</form>
 </body>
 </html>
