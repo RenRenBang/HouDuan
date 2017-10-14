@@ -9,5 +9,22 @@
 <body>
 欢迎×××用户，登录成功！！
 <h3>登录后跳转的页面</h3>
+	<form action="queryCorderBy" method="get">
+	
+		<table>
+			<tr>
+				<td><input type="text" name="type" ></td>
+			</tr>
+			<tr>
+				<td><input type="text" name="trade" ></td>
+			</tr>
+			<tr>
+				<td><input type="text" name="title" ></td>
+			</tr>
+			<tr>
+				<td><input type="submit"></td>
+			</tr>
+		</table>
+	</form>
 </body>
 </html>

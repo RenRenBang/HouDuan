@@ -1,5 +1,7 @@
 package com.soecode.lyf.dao;
 
+import javax.annotation.Resource;
+
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -8,7 +10,7 @@ import com.soecode.lyf.entity.Cuser;
 
 public class CuserDaoTest extends BaseTest{
 
-	@Autowired
+	@Resource
 	private CuserDao cuserdao;
 	
 	
