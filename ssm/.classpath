@@ -64,6 +64,5 @@
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/spring-webmvc-4.1.7.RELEASE.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/standard-1.1.2.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="C:/Users/LiYaoheng/.m2/repository/com/alibaba/fastjson/1.2.38/fastjson-1.2.38.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
