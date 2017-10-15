@@ -43,6 +43,8 @@ public class Cuser {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
 	public int getUid() {
 		return uid;
 	}

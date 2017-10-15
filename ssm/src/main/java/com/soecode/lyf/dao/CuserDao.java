@@ -19,6 +19,6 @@ public interface CuserDao {
 	
 	//修改头像
 	void updateImgeById(int uid,String image);
-
+	
 	
 }
