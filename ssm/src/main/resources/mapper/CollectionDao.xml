@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soecode.lyf.dao.CollectionDao">
+	<!-- 目的：为dao接口方法提供sql语句配置 -->
+	
+		<!-- //添加收藏
+		void addCollection(); -->
+		<insert id="addCollection">
+			insert into collection(uid,oid) values(#{uid},#{oid})
+		</insert>
+		<!-- //刪除收藏
+		void delCollection(); -->
+		<delete id="delCollection">
+			delete from collection where cid = #{cid}
+		</delete>
+		<!-- //根据用户uid查收藏
+		List<CollectionDao> findByUid(); -->
+		<resultMap type="com.soecode.lyf.entity.Collections" id="Mycollection">
+			<id column="cid" property="cid"/>
+			<association property="cuser" column="cuser.uid" javaType="com.soecode.lyf.entity.Cuser">
+				<id column="uid" property="uid"/>
+				<result column="uphone" property="uphone"/>
+				<result column="name" property="name"/>
+				<result column="nickname" property="nickname"/>
+				<result column="id_number" property="idNumber"/>
+				<result column="image" property="image"/>
+				<result column="profile" property="profile"/>
+			</association>
+			<association property="corder" column="corder.oid" javaType="com.soecode.lyf.entity.Corder">
+				<id column="oid" property="oid"/>
+				<result column="type" property="type" />
+				<result column="trade" property="trade"/>
+				<result column="start_time" property="startTime"/>
+				<result column="end_time" property="endTime"/>
+				<result column="title" property="title"/>
+				<result column="money" property="money"/>
+				<result column="odescribe" property="odescribe"/>
+				<result column="ophoto_path" property="ophotoPath"/>
+				<result column="address" property="address"/>
+				<result column="ocount" property="ocount"/>
+				<result column="gm_num" property="gmNum"/>
+				<result column="coll_num" property="collNum"/>
+			</association>
+		</resultMap>
+		<select id="findByUid" resultMap="Mycollection">
+			select * from collection,cuser,corder where cuser.uid=collection.uid and collection.oid=corder.oid and collection.uid = #{uid}
+		</select>
+	
+</mapper>
