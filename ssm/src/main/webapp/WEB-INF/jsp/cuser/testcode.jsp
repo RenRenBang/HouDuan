@@ -15,7 +15,26 @@
 	</form>
 	<form action="addCuser" method="post">
 		<table>
-			<tr><input type="submit" value="tijiao"> </tr>
+			<tr>
+				<td><input type="text" name="uphone"></td>
+			</tr>
+			<tr>
+				<td><input type="text" name="code"></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="tijiao"></td>
+			</tr>
+		</table>
+	</form>
+=============================================
+	<form action="queryCorderListById">
+		<table>
+			<tr>
+				<td><input type="text" name="uid"></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="查询"></td>
+			</tr>
 		</table>
 	</form>
 </body>

@@ -100,4 +100,8 @@
 		</if>
 		where oid= #{oid}
 	</update>
+	
+	<select id="queryCorderListById" resultType="com.soecode.lyf.entity.Corder">
+		select * from corder where uid=#{uid}
+	</select>
 </mapper>

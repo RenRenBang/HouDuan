@@ -1,15 +1,11 @@
 package com.soecode.lyf.dao;
 
-import static org.junit.Assert.*;
-
 import java.util.List;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.soecode.lyf.BaseTest;
-import com.soecode.lyf.entity.Corder;
-import com.soecode.lyf.entity.Cuser;
 import com.soecode.lyf.entity.Transaction;
 
 public class TransactionDaoTest extends BaseTest{

@@ -109,4 +109,20 @@ public class CorderController {
 		}		
 		return JsonOperator.toJson(jsonCode);
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/queryCorderListById", method = RequestMethod.GET,produces = "text/json;charset=UTF-8")
+	private String queryCorderListById(@RequestParam("uid") int uid) {
+		List<Corder> corderList = corderService.queryCorderListById(uid);
+		JsonCode<Corder> jsonCode = new JsonCode<Corder>();
+		if(corderList.size() != 0){
+			jsonCode.setStatusCode("200");
+			jsonCode.setTagCode("查询成功");
+			jsonCode.setData(corderList);
+		} else {
+			jsonCode.setStatusCode("400");
+			jsonCode.setTagCode("查询失败");
+		}		
+		return JsonOperator.toJson(jsonCode);
+	}
 }

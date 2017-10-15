@@ -41,6 +41,7 @@ public class CuserController {
 	@RequestMapping(value = "/begin", method = RequestMethod.GET)
 	private String begin() {
 		System.out.println("通过index页面开始进入web-inf目录下的页面");
+		//return "cuser/loginJsp"
 		return "cuser/testcode";
 	} 
 	
@@ -83,12 +84,10 @@ public class CuserController {
 		String code1 = (String) request.getSession().getAttribute("code");
 		String uphone = (String) request.getSession().getAttribute("uphone");
 		if(code.equals(code1)&&uphone.equals(cuser.getUphone())) {
+			System.out.println("验证码通过，开始注册用户。。。。。。");
 			cuserService.addCuser(cuser);
-			return null;
-		}else {
-			
-			return null;
 		}
+		return "cuser/loginJsp";
 	}
 	
 	//获取验证码

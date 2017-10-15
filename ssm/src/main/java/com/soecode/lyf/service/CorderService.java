@@ -15,4 +15,6 @@ public interface CorderService {
 	Corder queryCorderById(int oid);
 	
 	void updateNum(String num,int oid);
+	
+	List<Corder> queryCorderListById(int uid);
 }

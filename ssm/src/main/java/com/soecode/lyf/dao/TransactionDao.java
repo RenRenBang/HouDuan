@@ -3,7 +3,6 @@ package com.soecode.lyf.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
-import org.junit.runners.Parameterized.Parameter;
 
 import com.soecode.lyf.entity.Transaction;
 
@@ -15,5 +14,6 @@ public interface TransactionDao {
 	 * @return
 	 */
 	int addTransaction(@Param("oid") int oid,@Param("uid") int uid,@Param("releaseUid") int releaseUid);
+	
 	List<Transaction> queryTransactionById(int uid);
 }

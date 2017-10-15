@@ -48,4 +48,10 @@ public class CorderServiceImpl implements CorderService {
 		corderDao.updateNum(num, oid);
 	}
 
+	@Override
+	public List<Corder> queryCorderListById(int uid) {
+		// TODO 自动生成的方法存根
+		return corderDao.queryCorderListById(uid);
+	}
+
 }

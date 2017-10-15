@@ -1,10 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
 Built-By: LiYaoheng
 Build-Jdk: 1.8.0_102
-=======
-Built-By: ￧ﾙﾽ￥ﾰﾏ￧ﾼﾖ
-Build-Jdk: 1.8.0_144
->>>>>>> 3650fb07cffa0ac53cea1f74ef03a3f171ee7739
 Created-By: Maven Integration for Eclipse
 

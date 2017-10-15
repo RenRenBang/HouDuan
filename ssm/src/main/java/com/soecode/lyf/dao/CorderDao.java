@@ -30,4 +30,6 @@ public interface CorderDao {
 	
 	void updateNum(@Param("num") String num,@Param("oid") int oid);
 	
+	List<Corder> queryCorderListById(int uid);
+	
 }
