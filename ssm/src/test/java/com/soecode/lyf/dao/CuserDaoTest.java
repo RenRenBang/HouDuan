@@ -37,12 +37,8 @@ public class CuserDaoTest extends BaseTest{
 	
 	@Test
 	public void findByid()throws Exception{
-<<<<<<< HEAD
-		int uid = 1;
-=======
 
-		int uid = 6;
->>>>>>> 92629a726ab61b6762d733eee0290a334a66283e
+		int uid = 1;
 		Cuser cuser = cuserdao.findByid(uid);
 		System.out.println(cuser);
 	}

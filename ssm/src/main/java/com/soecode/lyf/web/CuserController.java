@@ -41,12 +41,7 @@ public class CuserController {
 	@RequestMapping(value = "/begin", method = RequestMethod.GET)
 	private String begin() {
 		System.out.println("通过index页面开始进入web-inf目录下的页面");
-<<<<<<< HEAD
-		//return "cuser/loginJsp"
-		return "cuser/testcode";
-=======
-		return "imge/fileUpload";
->>>>>>> 92629a726ab61b6762d733eee0290a334a66283e
+		return "cuser/loginJsp";
 	} 
 	
 	/*uphone;
