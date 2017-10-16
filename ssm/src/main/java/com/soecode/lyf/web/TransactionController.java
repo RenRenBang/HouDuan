@@ -24,11 +24,22 @@ public class TransactionController {
 	@Autowired
 	private CorderService corderService;
 
-	@RequestMapping(value = "/addTransaction", method = RequestMethod.GET)
+	@ResponseBody
+	@RequestMapping(value = "/addTransaction", method = RequestMethod.GET,produces = "text/json;charset=UTF-8")
 	private String addTransaction(@Param("oid") int oid,@Param("uid") int uid) {
-		transactionService.addTransaction(oid,uid);
-		corderService.updateNum("gm_num", oid);
-		return "cuser/loginSuccessJsp";
+		JsonCode jsonCode = new JsonCode<>();
+		try {
+			transactionService.addTransaction(oid,uid);
+			corderService.updateNum("gm_num", oid);
+			jsonCode.setStatusCode("200");
+			jsonCode.setTagCode("交易添加成功");
+		} catch (Exception e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+			jsonCode.setStatusCode("400");
+			jsonCode.setTagCode("交易添加失败");
+		}
+		return JsonOperator.toJson(jsonCode);
 	}
 	
 	@ResponseBody

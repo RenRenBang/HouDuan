@@ -30,18 +30,39 @@ public class CollectionController {
 	@Autowired
 	CorderService corderService;
 	
-	
-	@RequestMapping(value = "/addCollections", method = RequestMethod.POST)
+	@ResponseBody
+	@RequestMapping(value = "/addCollections", method = RequestMethod.POST,produces = "text/json;charset=UTF-8")
 	private String addCollections(@RequestParam("oid") int oid,@RequestParam("uid") int uid) {
-		collectionService.addCollection(oid,uid);
-		corderService.updateNum("coll_num", oid);
-		return "corder/collectionListJsp";
+		JsonCode<Collections> jsonCode = new JsonCode<Collections>();
+		try {
+			collectionService.addCollection(oid,uid);
+			corderService.updateNum("coll_num", oid);
+			jsonCode.setStatusCode("200");
+			jsonCode.setTagCode("添加成功");
+		} catch (Exception e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+			jsonCode.setStatusCode("400");
+			jsonCode.setTagCode("添加失败");
+		}		
+		return JsonOperator.toJson(jsonCode);
 	}
 	
-	@RequestMapping(value = "/deleteCollections", method = RequestMethod.GET)
+	@ResponseBody
+	@RequestMapping(value = "/deleteCollections", method = RequestMethod.GET,produces = "text/json;charset=UTF-8")
 	private String deleteCollections(@RequestParam("cid") int cid) {
-		collectionService.delCollection(cid);
-		return "corder/collectionListJsp";
+		JsonCode<Collections> jsonCode = new JsonCode<Collections>();
+		try {
+			collectionService.delCollection(cid);
+			jsonCode.setStatusCode("200");
+			jsonCode.setTagCode("删除成功");
+		} catch (Exception e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+			jsonCode.setStatusCode("400");
+			jsonCode.setTagCode("删除失败");
+		}		
+		return JsonOperator.toJson(jsonCode);
 	}
 	
 	@ResponseBody

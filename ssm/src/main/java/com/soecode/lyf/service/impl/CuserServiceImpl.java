@@ -10,8 +10,8 @@ import com.soecode.lyf.service.CuserService;
 @Service
 public class CuserServiceImpl implements CuserService{
 
-	@Autowired
 	//需要dao对象会自动注入
+	@Autowired
 	private CuserDao cuserdao;
 	
 	@Override
@@ -42,6 +42,12 @@ public class CuserServiceImpl implements CuserService{
 	public void updateImgeById(int uid,String image) {
 		// TODO Auto-generated method stub
 		cuserdao.updateImgeById(uid,image);
+	}
+
+	@Override
+	public Cuser findCuserByPhone(String uphone) {
+		// TODO 自动生成的方法存根
+		return cuserdao.findCuserByPhone(uphone);
 	}
 
 }

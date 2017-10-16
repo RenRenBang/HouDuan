@@ -8,8 +8,9 @@
   
   <body>
       <!-- 遍历Map集合 -->
+      ==============根目录下的文件，选择下载=========
     <c:forEach var="me" items="${fileNameMap}">
-        <c:url value="/file/downFile" var="downurl">
+        <c:url value="downFile" var="downurl">
             <c:param name="filename" value="${me.key}"></c:param>
         </c:url>
         ${me.value}<a href="${downurl}">下载</a>

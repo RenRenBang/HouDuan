@@ -76,7 +76,7 @@ public class CorderController {
 	@RequestMapping(value = "/queryCorderById", method = RequestMethod.GET,produces = "text/json;charset=UTF-8")
 	private String queryCorderById(@RequestParam("oid") int oid) {
 		Corder corder = corderService.queryCorderById(oid);
-		List list = new ArrayList();
+		List<Corder> list = new ArrayList<Corder>();
 		list.add(corder);
 		String dataString = JsonOperator.toJson(corder);
 		JsonCode<Corder> jsonCode = new JsonCode<Corder>();

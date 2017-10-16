@@ -9,57 +9,60 @@
 <body>
 欢迎×××用户，登录成功！！
 <h3>登录后跳转的页面</h3>
+==================
 	<form action="queryCorderBy" method="get">
 	
 		<table>
 			<tr>
-				<td><input type="text" name="type" ></td>
+				<td>type:<input type="text" name="type" ></td>
 			</tr>
 			<tr>
-				<td><input type="text" name="trade" ></td>
+				<td>trade:<input type="text" name="trade" ></td>
 			</tr>
 			<tr>
-				<td><input type="text" name="title" ></td>
+				<td>title模糊:<input type="text" name="title" ></td>
 			</tr>
 			<tr>
 				<td><input type="submit"></td>
 			</tr>
 		</table>
 	</form>
+	=================
 	<form action="queryCorderById" method="get">
 		<table>
 			<tr>
-				<td><input type="text" name="oid"></td>
+				<td>oid查找单个订单:<input type="text" name="oid"></td>
 			</tr>
 			<tr>
 				<td><input type="submit" value="id查询订单"></td>
 			</tr>
 		</table>
 	</form>
-	
+	====================
 	<form action="queryTransactionById" method="get">
 		<table>
 			<tr>
-				<td><input type="text" name="uid"></td>
+				<td>uid查用户的交易记录:<input type="text" name="uid"></td>
 			</tr>
 			<tr>
 				<td><input type="submit" value="tijiao"></td>
 			</tr>
 		</table>
 	</form>
-	
+	=============
 	<form action="addTransaction" method="get">
 		<table>
 			<tr>
-				<td><input type="text" name="uid" ></td>
+				<td>uid添加交易: <input type="text" name="uid" ></td>
 			</tr>
 			<tr>
-				<td><input type="text" name="oid" ></td>
+				<td>oid:<input type="text" name="oid" ></td>
 			</tr>
 			<tr>
 				<td><input type="submit" value="tijiao"></td>
 			</tr>
 		</table>
 	</form>
+	===============
 </body>
 </html>

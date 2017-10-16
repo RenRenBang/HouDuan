@@ -16,13 +16,12 @@
 </head>
 <body>
 	<center>
-		<form action="file/onefile2"
+	===========单个文件上传======
+		<form action="onefile2"
 			method="post" enctype="multipart/form-data">
-			<input type="file" name="file" /> 
+			<input type="file" name="file" /> <br/>
 			<input type="submit" value="上 传" />
 		</form>
-		<h5>上传结果：</h5>
-		<img alt="暂无图片" src="${fileUrl}" />
 	</center>
 </body>
 </html>

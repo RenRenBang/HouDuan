@@ -49,6 +49,7 @@
         <if test="title != '' and title != null">  
             and title like CONCAT('%', #{title}, '%')
         </if>  
+        order by start_time desc
 	</select>
 	
 	<resultMap type="com.soecode.lyf.entity.Corder" id="CorderMap">
@@ -91,17 +92,10 @@
 	</delete>
 	
 	<update id="updateNum">
-		update corder set 
-		<if test="num == 'gm_num'">
-			gm_num = gm_num+1
-		</if>
-		<if test="num == 'coll_num'">
-			coll_num = coll_num+1
-		</if>
-		where oid= #{oid}
+		update corder set #{num}=#{num}+1 where oid= #{oid}
 	</update>
 	
 	<select id="queryCorderListById" resultType="com.soecode.lyf.entity.Corder">
-		select * from corder where uid=#{uid}
+		select * from corder where uid=#{uid} order by start_time desc
 	</select>
 </mapper>

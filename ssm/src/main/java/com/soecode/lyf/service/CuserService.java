@@ -15,6 +15,9 @@ public interface CuserService {
 	//根据id查用户	
 	Cuser findByid(int uid);
 	
+	//根据手机号查用户
+	Cuser findCuserByPhone(String uphone);
+	
 	//修改头像
 	void updateImgeById(int uid,String image);
 }

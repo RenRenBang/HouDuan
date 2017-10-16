@@ -41,10 +41,17 @@
 		where uid = #{uid}
 	</update>
 	<!-- Cuser findByid(int uid); -->
-	<select id="findByid" parameterType="com.soecode.lyf.entity.Cuser" resultType="com.soecode.lyf.entity.Cuser">
+	<select id="findByid" resultType="com.soecode.lyf.entity.Cuser">
 		select * from cuser 
 		where 
 		uid = #{uid}
+	</select>
+	
+	<!-- findCuserByPhone -->
+	<select id="findCuserByPhone" resultType="com.soecode.lyf.entity.Cuser">
+		select * from cuser 
+		where 
+		uphone = #{uphone}
 	</select>
 	
 	<!-- void updateImgeById(int uid,String image); -->

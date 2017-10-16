@@ -20,14 +20,18 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
+import com.soecode.lyf.entity.JsonCode;
+import com.soecode.lyf.utils.JsonOperator;
+
 @Controller
-@RequestMapping("/file")
 public class FileController {
 
 	@RequestMapping("/toFile")
@@ -49,17 +53,17 @@ public class FileController {
 			@RequestParam("file") CommonsMultipartFile file,
 			HttpServletRequest request, ModelMap model) {
 
-		// ���ԭʼ�ļ���
+		// 获取文件名
 		String fileName = file.getOriginalFilename();
-		System.out.println("ԭʼ�ļ���:" + fileName);
+		System.out.println("文件名:" + fileName);
 
-		// ���ļ���
+		// 添加随机名字，防止文件同名
 		String newFileName = UUID.randomUUID() + fileName;
 
-		// �����Ŀ��·��
+		// 获取当前项目的路径
 		ServletContext sc = request.getSession().getServletContext();
-		// �ϴ�λ��
-		String path = sc.getRealPath("/img") + "/"; // �趨�ļ������Ŀ¼
+		// 拼接文件路径
+		String path = sc.getRealPath("/img") + "/"; 
 
 		File f = new File(path);
 		if (!f.exists())
@@ -79,89 +83,106 @@ public class FileController {
 			}
 		}
 
-		System.out.println("�ϴ�ͼƬ��:" + path + newFileName);
-		// �����ļ���ַ������JSPҳ�����
+		System.out.println("文件路径:" + path + newFileName);
+		// 将文件路径保存到model返回
 		model.addAttribute("fileUrl", path + newFileName);
 		return "/imge/fileUpload";
 	}
 
 	/**
-	 * �������ϴ��ļ���һ��һ��
+	 * 上传文件到指定文件夹
+	 * 上传成功返回文件的路径。
 	 */
-	@RequestMapping("/onefile2")
-	public String oneFileUpload2(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
-		CommonsMultipartResolver cmr = new CommonsMultipartResolver(
-				request.getServletContext());
-		if (cmr.isMultipart(request)) {
-			MultipartHttpServletRequest mRequest = (MultipartHttpServletRequest) (request);
-			Iterator<String> files = mRequest.getFileNames();
-			while (files.hasNext()) {
-				MultipartFile mFile = mRequest.getFile(files.next());
-				if (mFile != null) {
-					String fileName = UUID.randomUUID()
-							+ mFile.getOriginalFilename();
-					String path = "E:/upload/" + fileName;
-
-					File localFile = new File(path);
-					mFile.transferTo(localFile);
-					request.setAttribute("fileUrl", path);
-				}
-			}
-		}
-		return "/imge/fileUpload";
-	}
-
-	/**
-	 * һ���ϴ�����ͼƬ
-	 */
-	@RequestMapping("/threeFile")
-	public String threeFileUpload(
-			@RequestParam("file") CommonsMultipartFile files[],
-			HttpServletRequest request, ModelMap model) {
-
-		List<String> list = new ArrayList<String>();
-		// �����Ŀ��·��
-		ServletContext sc = request.getSession().getServletContext();
-		// �ϴ�λ��
-		String path = sc.getRealPath("/img") + "/"; // �趨�ļ������Ŀ¼
-		File f = new File(path);
-		if (!f.exists())
-			f.mkdirs();
-
-		for (int i = 0; i < files.length; i++) {
-			// ���ԭʼ�ļ���
-			String fileName = files[i].getOriginalFilename();
-			System.out.println("ԭʼ�ļ���:" + fileName);
-			// ���ļ���
-			String newFileName = UUID.randomUUID() + fileName;
-			if (!files[i].isEmpty()) {
-				try {
-					FileOutputStream fos = new FileOutputStream(path
-							+ newFileName);
-					InputStream in = files[i].getInputStream();
-					int b = 0;
-					while ((b = in.read()) != -1) {
-						fos.write(b);
+	@ResponseBody
+	@RequestMapping(value="/onefile2", method = RequestMethod.POST,produces = "text/json;charset=UTF-8")
+	public String oneFileUpload2(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		JsonCode jsonCode = new JsonCode<>();
+		try {
+			CommonsMultipartResolver cmr = new CommonsMultipartResolver(request.getServletContext());
+			if (cmr.isMultipart(request)) {
+				MultipartHttpServletRequest mRequest = (MultipartHttpServletRequest) (request);
+				Iterator<String> files = mRequest.getFileNames();
+				while (files.hasNext()) {
+					MultipartFile mFile = mRequest.getFile(files.next());
+					if (mFile != null) {
+						String fileName = UUID.randomUUID()
+								+ mFile.getOriginalFilename();
+						String path = "E:/upload/" + fileName;
+						//添加代码：如果没有路径需要先创建路径文件夹
+						File localFile = new File(path);
+						mFile.transferTo(localFile);
+						jsonCode.setTagCode(path);
 					}
-					fos.close();
-					in.close();
-				} catch (Exception e) {
-					e.printStackTrace();
 				}
 			}
-			System.out.println("�ϴ�ͼƬ��:" + path + newFileName);
-			list.add(path + newFileName);
-
+			jsonCode.setStatusCode("200");
+			
+		} catch (Exception e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+			jsonCode.setStatusCode("400");
+			jsonCode.setTagCode("上传文件失败");
 		}
-		// �����ļ���ַ������JSPҳ�����
-		model.addAttribute("fileList", list);
-		return "/imge/fileUpload2";
-
+		return JsonOperator.toJson(jsonCode);
 	}
 
 	/**
-	 * �г����е�ͼƬ
+	 * 保存 文件到项目根目录下。。
+	 * 多个文件的上传。
+	 */
+	@ResponseBody
+	@RequestMapping("/threeFile")
+	public String threeFileUpload(@RequestParam("file") CommonsMultipartFile files[],HttpServletRequest request, ModelMap model) {
+		JsonCode jsonCode = new JsonCode<>();
+		try {
+			List<String> listFile = new ArrayList<String>();
+			// 获取项目当前相对路径
+			//ServletContext sc = request.getSession().getServletContext();
+			// 新建保存文件的文件夹
+			//String path = sc.getRealPath("/img") + "/"; 
+			
+			//给定固定的文件路径
+			String path = "E:/upload/";
+			File f = new File(path);
+			if (!f.exists()){
+				f.mkdirs();
+			}
+			for (int i = 0; i < files.length; i++) {
+				String fileName = files[i].getOriginalFilename();
+				System.out.println("文件名:" + fileName);
+				String newFileName = UUID.randomUUID() + fileName;
+				if (!files[i].isEmpty()) {
+					try {
+						FileOutputStream fos = new FileOutputStream(path + newFileName);
+						InputStream in = files[i].getInputStream();
+						int b = 0;
+						while ((b = in.read()) != -1) {
+							fos.write(b);
+						}
+						fos.close();
+						in.close();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+				System.out.println("上传文件结果路径:" + path + newFileName);
+				listFile.add(path + newFileName);
+				//model.addAttribute("fileList", list);
+				
+			}
+			jsonCode.setTagCode(listFile.toString());
+			jsonCode.setStatusCode("200");
+		} catch (Exception e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+			jsonCode.setStatusCode("400");
+			jsonCode.setTagCode("上传文件失败");
+		}
+		return JsonOperator.toJson(jsonCode);
+	}
+
+	/**
+	 * 获取项目当前文件夹下的文件名
 	 */
 	@RequestMapping("/listFile")
 	public String listFile(HttpServletRequest request,

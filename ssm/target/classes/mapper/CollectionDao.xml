@@ -45,7 +45,11 @@
 			</association>
 		</resultMap>
 		<select id="findByUid" resultMap="Mycollection">
-			select * from collection,cuser,corder where cuser.uid=collection.uid and collection.oid=corder.oid and collection.uid = #{uid}
+			select * from collection,cuser,corder 
+			where cuser.uid=collection.uid 
+				and collection.oid=corder.oid 
+				and collection.uid = #{uid} 
+			order by cid desc
 		</select>
 	
 </mapper>

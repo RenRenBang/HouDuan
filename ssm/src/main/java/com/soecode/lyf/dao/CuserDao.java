@@ -1,12 +1,15 @@
 package com.soecode.lyf.dao;
 
+import org.apache.ibatis.annotations.Param;
+import org.junit.runners.Parameterized.Parameters;
+
 import com.soecode.lyf.entity.Cuser;
 
 public interface CuserDao {
 	
 	
 	//登录
-	Cuser login(String uphone,String password);
+	Cuser login(@Param("uphone") String uphone,@Param("password") String password);
 	
 	//注册
 	void addCuser(Cuser cuser);
@@ -17,8 +20,9 @@ public interface CuserDao {
 	//根据id查用户
 	Cuser findByid(int uid);
 	
+	Cuser findCuserByPhone(String uphone);
+	
 	//修改头像
 	void updateImgeById(int uid,String image);
-	
 	
 }

@@ -7,25 +7,25 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+=========添加收藏===
 <form action="addCollections" method="post">
 	<table>
 		<tr>
-			<td><input type="text" name="oid"></td>
+			<td>oid:<input type="text" name="oid"></td>
 		</tr>
 		<tr>
-			<td><input type="text" name="uid"></td>
+			<td>uid:<input type="text" name="uid"></td>
 		</tr>
 		<tr>
 			<td><input type="submit" value="shoucahng"></td>
 		</tr>
 	</table>
 </form>
-===============================
+=============删除收藏==================
 <form action="deleteCollections" method="get">
 	<table>
 		<tr>
-			<td><input type="text" name="cid"></td>
+			<td>cid:<input type="text" name="cid"></td>
 		</tr>
 		
 		<tr>
@@ -33,11 +33,11 @@
 		</tr>
 	</table>
 </form>
-===================================
+=================根据用户id查找收藏的订单==================
 <form action="findCollectionByUid" method="post">
 	<table>
 		<tr>
-			<td><input type="text" name="uid"></td>
+			<td>uid:<input type="text" name="uid"></td>
 		</tr>
 		
 		<tr>
