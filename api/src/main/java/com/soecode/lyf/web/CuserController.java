@@ -111,13 +111,14 @@ public class CuserController {
 				try {
 					@SuppressWarnings("unchecked")
 					Map<String, String> mapCheckCode = (Map<String, String>) request.getServletContext()
-							.getAttribute(cuser.getUphone());
+							.getAttribute("CheckCode");
 					//问题：获取验证码的请求和注册信息的请求不能获取到同一个session的信息。保存在application中，临时解决办法。。
 					
 					if (mapCheckCode != null) {
-						uphone = mapCheckCode.get("uphone");
-						code1 = mapCheckCode.get("code");
-						if (uphone.equals(cuser.getUphone())) {
+						//uphone = mapCheckCode.get("uphone");
+						code1 = mapCheckCode.get(cuser.getUphone());
+						System.out.println("session获取的CheckCode"+code1+"#接收到的code"+code);
+						if (code1 != null &&  !"".equals(code1)) {
 							if (code.equals(code1)) {
 								System.out.println("验证码通过，开始注册用户。。。。。。");
 								// 不能重复注册，在注册以前需要对用户进行查找，通过手机号进行查找。
@@ -130,13 +131,13 @@ public class CuserController {
 							} else {
 								cuserList.add(cuser);
 								jsonCode.setStatusCode("300");
-								jsonCode.setTagCode("验证码错误");
+								jsonCode.setTagCode("验证码错误n");
 								jsonCode.setData(cuserList);
 							}
 						} else {
 							cuserList.add(cuser);
 							jsonCode.setStatusCode("400");
-							jsonCode.setTagCode("手机号码错误");
+							jsonCode.setTagCode("手机号码错误,无法获取session的code");
 							jsonCode.setData(cuserList);
 						}
 						System.out.println(JsonOperator.toJson(jsonCode));
@@ -154,14 +155,14 @@ public class CuserController {
 					System.out.println("获取session中 的数据异常了。。。。。");
 					cuserList.add(cuser);
 					jsonCode.setStatusCode("300");
-					jsonCode.setTagCode("手机号码未发送验证码");
+					jsonCode.setTagCode("session异常，服务器验证码丢失");
 					jsonCode.setData(cuserList);
 					return JsonOperator.toJson(jsonCode);
 				}
 			} else {
 				cuserList.add(cuser);
 				jsonCode.setStatusCode("300");
-				jsonCode.setTagCode("验证码错误");
+				jsonCode.setTagCode("验证码错误w");
 				jsonCode.setData(cuserList);
 				return JsonOperator.toJson(jsonCode);
 			}
@@ -183,7 +184,7 @@ public class CuserController {
 			Cuser cuserFind = cuserService.findCuserByPhone(uphone);
 			if (cuserFind != null) {
 				jsonCode.setStatusCode("400");
-				jsonCode.setTagCode("该手机号已注册");
+				jsonCode.setTagCode("该手机号已注册y");
 				return JsonOperator.toJson(jsonCode);
 			}
 			RandomNum random = new RandomNum();
@@ -193,12 +194,14 @@ public class CuserController {
 			System.out.println("验证码为" + code + "请保密！");
 			// 这样在session中多个人同时注册可能产生混淆，可以将手机号和验证码临时保存在一个新建的session中，到时间了自动销毁，
 			// 或者将手机号和验证码打包在一个map中保存，不能像这样单独存储，多个人同时注册一定混淆。
-			Map<String, String> mapTempCode = new HashMap<String, String>();
+			Map<String, String> mapTempCode = (Map<String, String>) request.getServletContext().getAttribute(uphone);
 			//mapTempCode = (Map<String, String>) request.getSession().getAttribute(uphone);
 			//mapTempCode.clear();
-			mapTempCode.put("uphone", uphone);
-			mapTempCode.put("code", code);
-			request.getServletContext().setAttribute(uphone, mapTempCode);
+			if(mapTempCode == null){
+				mapTempCode = new HashMap<String,String>();
+			}
+			mapTempCode.put(uphone,code);
+			request.getServletContext().setAttribute("CheckCode", mapTempCode);
 			jsonCode.setStatusCode("200");
 			jsonCode.setTagCode("发送成功");
 		} catch (Exception e) {
