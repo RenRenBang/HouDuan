@@ -31,6 +31,7 @@ public class TransactionController {
 		try {
 			transactionService.addTransaction(oid,uid);
 			corderService.updateNum("gm_num", oid);
+			corderService.cutCount(oid);
 			jsonCode.setStatusCode("200");
 			jsonCode.setTagCode("交易添加成功");
 		} catch (Exception e) {

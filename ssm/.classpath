@@ -67,5 +67,7 @@
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/spring-web-4.1.7.RELEASE.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/spring-webmvc-4.1.7.RELEASE.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/standard-1.1.2.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/cors-filter-1.7.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/java-property-utils-1.9.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

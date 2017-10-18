@@ -16,10 +16,10 @@ public class CorderServiceImpl implements CorderService {
 	CorderDao corderDao;
 	
 	@Override
-	public void addCorder(Corder type) {
+	public void addCorder(Corder corder) {
 		//如果前端接收到的参数类型不合适，在service层进行调整。不在controller进行处理，cotroller接受最原始的数据就行。
-		Corder corder = new Corder();
-		corder.setType("service");
+//		Corder corder = new Corder();
+//		corder.setType("service");
 		
 		corderDao.addCorder(corder);
 	}
@@ -52,6 +52,12 @@ public class CorderServiceImpl implements CorderService {
 	public List<Corder> queryCorderListById(int uid) {
 		// TODO 自动生成的方法存根
 		return corderDao.queryCorderListById(uid);
+	}
+
+	@Override
+	public void cutCount(int oid) {
+		// TODO 自动生成的方法存根
+		corderDao.cutCount(oid);
 	}
 
 }

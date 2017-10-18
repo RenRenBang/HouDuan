@@ -5,6 +5,11 @@ package com.soecode.lyf.exception;
  */
 public class NoNumberException extends RuntimeException {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6312191138191776228L;
+
 	public NoNumberException(String message) {
 		super(message);
 	}

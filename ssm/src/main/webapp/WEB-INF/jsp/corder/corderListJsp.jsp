@@ -7,8 +7,40 @@
 <title>CorderList</title>
 </head>
 <body>
-
-<a href="to_logout">退出登录</a>
-
+<form action="addCorder" method="post">
+	<table>
+			<tr>
+				<td>uid: <input type="text" name="uid" ></td>
+			</tr>
+			<tr>
+				<td>address:<input type="text" name="address" ></td>
+			</tr>
+			<tr>
+				<td>money:<input type="text" name="money" ></td>
+			</tr>
+			<tr>
+				<td>ocount:<input type="text" name="ocount" ></td>
+			</tr>
+			<tr>
+				<td>odescribe:<input type="text" name="odescribe" ></td>
+			</tr>
+			<tr>
+				<td>title:<input type="text" name="title" ></td>
+			</tr>
+			<tr>
+				<td>trade:<input type="text" name="trade" ></td>
+			</tr>
+			<tr>
+				<td>type:<input type="text" name="type" ></td>
+			</tr>
+			<tr>
+				<td>endTime:<input type="text" name="endTime" ></td>
+			</tr>
+			
+			<tr>
+				<td><input type="submit" value="tijiao"></td>
+			</tr>
+		</table>
+</form>
 </body>
 </html>

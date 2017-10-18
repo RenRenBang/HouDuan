@@ -23,7 +23,22 @@
 				<td>用户收到的短信验证码：<input type="text" name="code"></td>
 			</tr>
 			<tr>
-				<td><input type="submit" value="tijiao"></td>
+				<td>身份证号码<input type="text" name="idNumber"></td>
+			</tr>
+			<tr>
+				<td>真实姓名<input type="text" name="name"></td>
+			</tr>
+			<tr>
+				<td>昵称<input type="text" name="nickname"></td>
+			</tr>
+			<tr>
+				<td>密码<input type="password" name="password"></td>
+			</tr>
+			<tr>
+				<td>个人介绍<input type="text" name="profile"></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="注册"></td>
 			</tr>
 		</table>
 	</form>

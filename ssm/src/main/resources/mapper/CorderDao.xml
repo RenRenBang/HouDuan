@@ -92,10 +92,17 @@
 	</delete>
 	
 	<update id="updateNum">
-		update corder set #{num}=#{num}+1 where oid= #{oid}
+		update corder set ${num}=${num}+1 where oid= #{oid}
+	</update>
+	
+	
+	<update id="cutCount">
+		update corder set ocount=ocount-1 where oid= #{oid}
 	</update>
 	
 	<select id="queryCorderListById" resultType="com.soecode.lyf.entity.Corder">
-		select * from corder where uid=#{uid} order by start_time desc
+		select * from corder 
+		where uid=#{uid}
+		order by start_time desc
 	</select>
 </mapper>
