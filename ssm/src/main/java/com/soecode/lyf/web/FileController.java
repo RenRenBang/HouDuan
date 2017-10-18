@@ -115,14 +115,14 @@ public class FileController {
 				while (files.hasNext()) {
 					MultipartFile mFile = mRequest.getFile(files.next());
 					if (mFile != null) {
-<<<<<<< HEAD
+
 						String fileName = uphone + ".jpg";
-						String path = "E:/upload/" + fileName;
-=======
-						String fileName = "testFile_" + mFile.getOriginalFilename();
-						//String path = "E:/upload/" + fileName;
 						String path = "/usr/local/httpd/htdocs/image/tempImage/" + fileName;
->>>>>>> 18b817436affb98b041a81eabd3d414dc19d8fbb
+
+					/*	String fileName = "testFile_" + mFile.getOriginalFilename();
+						//String path = "E:/upload/" + fileName;
+						String path = "/usr/local/httpd/htdocs/image/tempImage/" + fileName;*/
+
 						//添加代码：如果没有路径需要先创建路径文件夹
 						File localFile = new File(path);
 						mFile.transferTo(localFile);
@@ -153,7 +153,7 @@ public class FileController {
 			@RequestParam("idNumber") String idNumber,
 			@RequestParam("file") CommonsMultipartFile files[],HttpServletRequest request, ModelMap model) {
 		JsonCode jsonCode = new JsonCode<>();
-		String path = "E:/upload/";
+		String path = "/usr/local/httpd/htdocs/image/tempImage/";
 		try {
 			List<String> listFile = new ArrayList<String>();
 			// 获取项目当前相对路径
@@ -162,11 +162,10 @@ public class FileController {
 			//String path = sc.getRealPath("/img") + "/"; 
 			
 			//给定固定的文件路径
-<<<<<<< HEAD
-=======
+
 			//String path = "E:/upload/";
-			String path = "/usr/local/httpd/htdocs/image/tempImage/";
->>>>>>> 18b817436affb98b041a81eabd3d414dc19d8fbb
+			//String path = "/usr/local/httpd/htdocs/image/tempImage/";
+
 			File f = new File(path);
 			if (!f.exists()){
 				f.mkdirs();
@@ -174,11 +173,10 @@ public class FileController {
 			for (int i = 0; i < files.length; i++) {
 				String fileName = files[i].getOriginalFilename();
 				System.out.println("文件名:" + fileName);
-<<<<<<< HEAD
 				String newFileName = idNumber + i + ".jpg";
-=======
-				String newFileName = "testFile_" + fileName;
->>>>>>> 18b817436affb98b041a81eabd3d414dc19d8fbb
+
+				//String newFileName = "testFile_" + fileName;
+
 				if (!files[i].isEmpty()) {
 					try {
 						FileOutputStream fos = new FileOutputStream(path + newFileName);
