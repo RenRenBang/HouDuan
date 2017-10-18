@@ -20,4 +20,7 @@ public interface CuserService {
 	
 	//修改头像
 	void updateImgeById(int uid,String image);
+	
+	//修改身份证照片
+	void updatePhotoPathById(int uid,String photoPath);
 }

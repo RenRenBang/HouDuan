@@ -57,9 +57,15 @@
 	<!-- void updateImgeById(int uid,String image); -->
 	<update id="updateImgeById">
 		update cuser set
-		image=#{image}
-		where uid = #{uid}
+		image=#{param2}
+		where uid = #{param1}
 	</update>
-	
-	
+	<!-- //修改身份证照片
+	void updatePhotoPathById(int uid,String photoPath);
+	 -->
+	 <update id="updatePhotoPathById">
+		update cuser set
+		photo_path= #{param2}
+		where uid = #{param1}
+	</update>
 </mapper>

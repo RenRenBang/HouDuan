@@ -19,6 +19,8 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.catalina.startup.HomesUserDatabase;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,11 +32,18 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
+import com.mysql.jdbc.StringUtils;
 import com.soecode.lyf.entity.JsonCode;
+import com.soecode.lyf.service.CuserService;
 import com.soecode.lyf.utils.JsonOperator;
+
+import ch.qos.logback.core.net.SyslogOutputStream;
 
 @Controller
 public class FileController {
+	
+	@Autowired
+	CuserService cuserservice;
 
 	@RequestMapping("/toFile")
 	public String toFileUpload() {
@@ -94,10 +103,14 @@ public class FileController {
 	/**
 	 * 上传文件到指定文件夹
 	 * 上传成功返回文件的路径。
+	 * 单个文件上传
 	 */
 	@ResponseBody
 	@RequestMapping(value="/onefile2", method = RequestMethod.POST,produces = "text/json;charset=UTF-8")
-	public String oneFileUpload2(HttpServletRequest request,HttpServletResponse response) throws Exception {
+	public String oneFileUpload2(
+			@RequestParam("uid") int uid,
+			@RequestParam("uphone") String uphone,
+			HttpServletRequest request,HttpServletResponse response) throws Exception {
 		JsonCode jsonCode = new JsonCode<>();
 		try {
 			CommonsMultipartResolver cmr = new CommonsMultipartResolver(request.getServletContext());
@@ -107,23 +120,31 @@ public class FileController {
 				while (files.hasNext()) {
 					MultipartFile mFile = mRequest.getFile(files.next());
 					if (mFile != null) {
-						String fileName = "testFile_" + mFile.getOriginalFilename();
+
+						//获取文件后缀
+						String houzhui = mFile.getOriginalFilename().substring(mFile.getOriginalFilename().indexOf("."), mFile.getOriginalFilename().length());
+						String fileName = uphone + houzhui;
+						String path = "/usr/local/httpd/htdocs/image/headImage/" + fileName;
+						System.out.println("单个文件上传路径" + path);
+
+					/*	String fileName = "testFile_" + mFile.getOriginalFilename();
 						//String path = "E:/upload/" + fileName;
-						String path = "/usr/local/httpd/htdocs/image/tempImage/" + fileName;
+						String path = "/usr/local/httpd/htdocs/image/tempImage/" + fileName;*/
+
 						//添加代码：如果没有路径需要先创建路径文件夹
 						File localFile = new File(path);
 						mFile.transferTo(localFile);
+						jsonCode.setStatusCode("200");
 						jsonCode.setTagCode(path);
+						cuserservice.updateImgeById(uid, path);
 					}
 				}
 			}
-			jsonCode.setStatusCode("200");
-			
 		} catch (Exception e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 			jsonCode.setStatusCode("400");
-			jsonCode.setTagCode("上传文件失败");
+			jsonCode.setTagCode("单个文件上传失败");
 		}
 		return JsonOperator.toJson(jsonCode);
 	}
@@ -134,8 +155,12 @@ public class FileController {
 	 */
 	@ResponseBody
 	@RequestMapping("/threeFile")
-	public String threeFileUpload(@RequestParam("file") CommonsMultipartFile files[],HttpServletRequest request, ModelMap model) {
+	public String threeFileUpload(
+			@RequestParam("uid") int uid,
+			@RequestParam("idNumber") String idNumber,
+			@RequestParam("file") CommonsMultipartFile files[],HttpServletRequest request, ModelMap model) {
 		JsonCode jsonCode = new JsonCode<>();
+		String path = "/usr/local/httpd/htdocs/image/idCardPhoto/";
 		try {
 			List<String> listFile = new ArrayList<String>();
 			// 获取项目当前相对路径
@@ -144,16 +169,22 @@ public class FileController {
 			//String path = sc.getRealPath("/img") + "/"; 
 			
 			//给定固定的文件路径
+
 			//String path = "E:/upload/";
-			String path = "/usr/local/httpd/htdocs/image/tempImage/";
+			//String path = "/usr/local/httpd/htdocs/image/tempImage/";
+
 			File f = new File(path);
 			if (!f.exists()){
 				f.mkdirs();
 			}
+			String houzhui = "";
 			for (int i = 0; i < files.length; i++) {
 				String fileName = files[i].getOriginalFilename();
-				System.out.println("文件名:" + fileName);
-				String newFileName = "testFile_" + fileName;
+				System.out.println("文件原来的文件名:" + fileName);
+				houzhui = files[i].getOriginalFilename().substring(files[i].getOriginalFilename().indexOf("."), files[i].getOriginalFilename().length());
+				String newFileName = idNumber + "-" + i + houzhui;
+				System.out.println("服务器图片路径"+newFileName);
+
 				if (!files[i].isEmpty()) {
 					try {
 						FileOutputStream fos = new FileOutputStream(path + newFileName);
@@ -173,13 +204,14 @@ public class FileController {
 				//model.addAttribute("fileList", list);
 				
 			}
+			cuserservice.updatePhotoPathById(uid, path+idNumber+houzhui);
 			jsonCode.setTagCode(listFile.toString());
 			jsonCode.setStatusCode("200");
 		} catch (Exception e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 			jsonCode.setStatusCode("400");
-			jsonCode.setTagCode("上传文件失败");
+			jsonCode.setTagCode("多个文件上传失败");
 		}
 		return JsonOperator.toJson(jsonCode);
 	}

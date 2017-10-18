@@ -1,6 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" import="java.util.*" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -11,32 +12,24 @@
 <html>
 <head>
 <title>用户上传图片页面</title>
- <base href="<%=basePath%>">
+<base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
 	<center>
-	===========单个文件上传======
-		<form action="onefile2"
-			method="post" enctype="multipart/form-data">
-			uid<input type="text" name="uid" /> <br/>
-			uphone<input type="text" name="uphone" /> <br/>
-			<input type="file" name="file" /> <br/>
-			<input type="submit" value="上 传" />
-		</form>
-		
-	===========多个文件上传====
+	===========多个文件上传==
 		<form action="threeFile" method="post" enctype="multipart/form-data">
-		uid<input type="text" name="uid" /> <br/>
-			idNumber<input type="text" name="idNumber" /> <br/>
+			<input type="text" name="uid"/><br/>
+			<input type="text" name="idNumber"/><br/>
 			<input type="file" name="file" /><br /> 
 			<input type="file" name="file" /><br /> 
 			<input type="submit" value="上 传" />
 		</form>
-		
-		===================
 		<h5>上传结果：</h5>
-		<img alt="暂无图片" src="http://47.95.214.71:80/image/github.png" />	<br/>
+		<c:forEach items="${fileList}" var="imagename">
+				<img alt="暂无图片" src="${imagename}" />	<br/>
+		</c:forEach>
+
 	</center>
 </body>
 </html>
