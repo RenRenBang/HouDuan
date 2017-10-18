@@ -31,7 +31,7 @@
 	 		所以跳转页面都加上 文件夹名，eg:cuser/login
 	 		为了区分jsp与control的同名问题，所有页面使用  命令后加“jsp标识”，eg:loginJsp。
 	 	-->
-	 	<property name="prefix" value="/WEB-INF/jsp/" />
+	 	<property name="prefix" value="/WEB-INF/jsp/"/>
 	 	<property name="suffix" value=".jsp" />
 	 </bean>
 	 

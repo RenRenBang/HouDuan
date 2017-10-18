@@ -193,6 +193,42 @@ public class Corder {
 
 
 
+	/**
+	 * @return gmNum
+	 */
+	public int getGmNum() {
+		return gmNum;
+	}
+
+
+
+	/**
+	 * @param gmNum 要设置的 gmNum
+	 */
+	public void setGmNum(int gmNum) {
+		this.gmNum = gmNum;
+	}
+
+
+
+	/**
+	 * @return collNum
+	 */
+	public int getCollNum() {
+		return collNum;
+	}
+
+
+
+	/**
+	 * @param collNum 要设置的 collNum
+	 */
+	public void setCollNum(int collNum) {
+		this.collNum = collNum;
+	}
+
+
+
 	/* （非 Javadoc）
 	 * @see java.lang.Object#toString()
 	 */
@@ -201,8 +237,16 @@ public class Corder {
 		return "Corder [oid=" + oid + ", type=" + type + ", trade=" + trade + ", startTime=" + startTime + ", endTime="
 				+ endTime + ", title=" + title + ", money=" + money + ", odescribe=" + odescribe + ", ophotoPath="
 				+ ophotoPath + ", address=" + address + ", ocount=" + ocount + ", isValid=" + isValid + ", gmNum="
-				+ gmNum + ", collNum=" + collNum + ", cuser=" + cuser + "]";
+				+ gmNum + ", collNum=" + collNum + ", cuser=" + cuser + ", getCuser()=" + getCuser() + ", getOid()="
+				+ getOid() + ", getType()=" + getType() + ", getTrade()=" + getTrade() + ", getStartTime()="
+				+ getStartTime() + ", getEndTime()=" + getEndTime() + ", getTitle()=" + getTitle() + ", getMoney()="
+				+ getMoney() + ", getOdescribe()=" + getOdescribe() + ", getOphotoPath()=" + getOphotoPath()
+				+ ", getAddress()=" + getAddress() + ", getOcount()=" + getOcount() + ", getIsValid()=" + getIsValid()
+				+ ", getGmNum()=" + getGmNum() + ", getCollNum()=" + getCollNum() + ", getClass()=" + getClass()
+				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
+
+
 
 	
 

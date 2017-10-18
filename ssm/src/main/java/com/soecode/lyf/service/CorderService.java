@@ -17,4 +17,6 @@ public interface CorderService {
 	void updateNum(String num,int oid);
 	
 	List<Corder> queryCorderListById(int uid);
+	
+	void cutCount(int oid);
 }

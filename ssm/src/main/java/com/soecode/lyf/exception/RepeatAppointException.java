@@ -5,6 +5,11 @@ package com.soecode.lyf.exception;
  */
 public class RepeatAppointException extends RuntimeException {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1282894761225872660L;
+
 	public RepeatAppointException(String message) {
 		super(message);
 	}

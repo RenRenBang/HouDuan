@@ -32,4 +32,6 @@ public interface CorderDao {
 	
 	List<Corder> queryCorderListById(int uid);
 	
+	void cutCount(int oid);
+	
 }
