@@ -17,6 +17,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,10 +30,14 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import com.soecode.lyf.entity.JsonCode;
+import com.soecode.lyf.service.CuserService;
 import com.soecode.lyf.utils.JsonOperator;
 
 @Controller
 public class FileController {
+	
+	@Autowired
+	CuserService cuserservice;
 
 	@RequestMapping("/toFile")
 	public String toFileUpload() {
@@ -95,7 +100,10 @@ public class FileController {
 	 */
 	@ResponseBody
 	@RequestMapping(value="/onefile2", method = RequestMethod.POST,produces = "text/json;charset=UTF-8")
-	public String oneFileUpload2(HttpServletRequest request,HttpServletResponse response) throws Exception {
+	public String oneFileUpload2(
+			@RequestParam("uid") int uid,
+			@RequestParam("uphone") String uphone,
+			HttpServletRequest request,HttpServletResponse response) throws Exception {
 		JsonCode jsonCode = new JsonCode<>();
 		try {
 			CommonsMultipartResolver cmr = new CommonsMultipartResolver(request.getServletContext());
@@ -105,13 +113,13 @@ public class FileController {
 				while (files.hasNext()) {
 					MultipartFile mFile = mRequest.getFile(files.next());
 					if (mFile != null) {
-						String fileName = UUID.randomUUID()
-								+ mFile.getOriginalFilename();
+						String fileName = uphone + ".jpg";
 						String path = "E:/upload/" + fileName;
 						//添加代码：如果没有路径需要先创建路径文件夹
 						File localFile = new File(path);
 						mFile.transferTo(localFile);
 						jsonCode.setTagCode(path);
+						cuserservice.updateImgeById(uid, path);
 					}
 				}
 			}
@@ -132,8 +140,12 @@ public class FileController {
 	 */
 	@ResponseBody
 	@RequestMapping("/threeFile")
-	public String threeFileUpload(@RequestParam("file") CommonsMultipartFile files[],HttpServletRequest request, ModelMap model) {
+	public String threeFileUpload(
+			@RequestParam("uid") int uid,
+			@RequestParam("idNumber") String idNumber,
+			@RequestParam("file") CommonsMultipartFile files[],HttpServletRequest request, ModelMap model) {
 		JsonCode jsonCode = new JsonCode<>();
+		String path = "E:/upload/";
 		try {
 			List<String> listFile = new ArrayList<String>();
 			// 获取项目当前相对路径
@@ -142,7 +154,6 @@ public class FileController {
 			//String path = sc.getRealPath("/img") + "/"; 
 			
 			//给定固定的文件路径
-			String path = "E:/upload/";
 			File f = new File(path);
 			if (!f.exists()){
 				f.mkdirs();
@@ -150,7 +161,7 @@ public class FileController {
 			for (int i = 0; i < files.length; i++) {
 				String fileName = files[i].getOriginalFilename();
 				System.out.println("文件名:" + fileName);
-				String newFileName = UUID.randomUUID() + fileName;
+				String newFileName = idNumber + i + ".jpg";
 				if (!files[i].isEmpty()) {
 					try {
 						FileOutputStream fos = new FileOutputStream(path + newFileName);
@@ -178,6 +189,7 @@ public class FileController {
 			jsonCode.setStatusCode("400");
 			jsonCode.setTagCode("上传文件失败");
 		}
+		cuserservice.updatePhotoPathById(uid, path+idNumber);
 		return JsonOperator.toJson(jsonCode);
 	}
 

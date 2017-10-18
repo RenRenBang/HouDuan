@@ -50,4 +50,11 @@ public class CuserServiceImpl implements CuserService{
 		return cuserdao.findCuserByPhone(uphone);
 	}
 
+	@Override
+	public void updatePhotoPathById(int uid, String photoPath) {
+		// TODO Auto-generated method stub
+		cuserdao.updatePhotoPathById(uid, photoPath);
+	}
+	
+
 }

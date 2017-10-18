@@ -19,7 +19,8 @@
 	<center>
 	===========多个文件上传==
 		<form action="threeFile" method="post" enctype="multipart/form-data">
-			<input type="file" name="file" /><br /> 
+			<input type="text" name="uid"/><br/>
+			<input type="text" name="idNumber"/><br/>
 			<input type="file" name="file" /><br /> 
 			<input type="file" name="file" /><br /> 
 			<input type="submit" value="上 传" />
