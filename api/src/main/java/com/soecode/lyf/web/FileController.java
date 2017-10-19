@@ -122,7 +122,7 @@ public class FileController {
 					if (mFile != null) {
 
 						//获取文件后缀
-						String houzhui = mFile.getOriginalFilename().substring(mFile.getOriginalFilename().indexOf("."), mFile.getOriginalFilename().length());
+						String houzhui = mFile.getOriginalFilename().substring(mFile.getOriginalFilename().indexOf("."), mFile.getOriginalFilename().length()).toLowerCase();
 						String fileName = uphone + houzhui;
 						String path = "/usr/local/httpd/htdocs/image/headImage/" + fileName;
 						System.out.println("单个文件上传路径" + path);
@@ -135,8 +135,8 @@ public class FileController {
 						File localFile = new File(path);
 						mFile.transferTo(localFile);
 						jsonCode.setStatusCode("200");
-						jsonCode.setTagCode(path);
-						cuserservice.updateImgeById(uid, path);
+						jsonCode.setTagCode("/image/headImage/" + fileName);
+						cuserservice.updateImgeById(uid, "/image/headImage/" + fileName);
 					}
 				}
 			}
@@ -181,7 +181,7 @@ public class FileController {
 			for (int i = 0; i < files.length; i++) {
 				String fileName = files[i].getOriginalFilename();
 				System.out.println("文件原来的文件名:" + fileName);
-				houzhui = files[i].getOriginalFilename().substring(files[i].getOriginalFilename().indexOf("."), files[i].getOriginalFilename().length());
+				houzhui = files[i].getOriginalFilename().substring(files[i].getOriginalFilename().indexOf("."), files[i].getOriginalFilename().length()).toLowerCase();
 				String newFileName = idNumber + "-" + i + houzhui;
 				System.out.println("服务器图片路径"+newFileName);
 
@@ -200,11 +200,11 @@ public class FileController {
 					}
 				}
 				System.out.println("上传文件结果路径:" + path + newFileName);
-				listFile.add(path + newFileName);
+				listFile.add("/image/idCardPhoto/" + newFileName);
 				//model.addAttribute("fileList", list);
 				
 			}
-			cuserservice.updatePhotoPathById(uid, path+idNumber+houzhui);
+			cuserservice.updatePhotoPathById(uid, "/image/idCardPhoto/"+idNumber+houzhui);
 			jsonCode.setTagCode(listFile.toString());
 			jsonCode.setStatusCode("200");
 		} catch (Exception e) {

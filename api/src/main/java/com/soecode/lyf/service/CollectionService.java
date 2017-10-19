@@ -14,4 +14,6 @@ public interface CollectionService {
 			
 			//根据用户uid查收藏
 			List<Collections> findByUid(int uid);
+			
+			String findCidByUidOid(int uid,int oid);
 }

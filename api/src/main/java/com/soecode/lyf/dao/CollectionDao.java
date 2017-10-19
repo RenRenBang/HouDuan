@@ -17,4 +17,6 @@ public interface CollectionDao {
 		
 		//根据用户uid查收藏
 		List<Collections> findByUid(int uid);
+		
+		Integer findCidByUidOid(@Param("uid") int uid,@Param("oid") int oid);
 }

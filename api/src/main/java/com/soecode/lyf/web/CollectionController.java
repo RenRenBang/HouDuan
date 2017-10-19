@@ -37,8 +37,9 @@ public class CollectionController {
 		try {
 			collectionService.addCollection(oid,uid);
 			corderService.updateNum("coll_num", oid);
+			String findCid = collectionService.findCidByUidOid(uid, oid);
 			jsonCode.setStatusCode("200");
-			jsonCode.setTagCode("添加成功");
+			jsonCode.setTagCode(findCid);
 		} catch (Exception e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -82,4 +83,21 @@ public class CollectionController {
 		return JsonOperator.toJson(jsonCode);
 	}
 		
+	
+	@ResponseBody
+	@RequestMapping(value = "/findCidByUidOid", method = RequestMethod.GET,produces = "text/json;charset=UTF-8")
+	private String findCidByUidOid(@RequestParam("uid") int uid,@RequestParam("oid") int oid) {
+		JsonCode<Collections> jsonCode = new JsonCode<Collections>();
+		try {
+			String findCid = collectionService.findCidByUidOid(uid, oid);
+			jsonCode.setStatusCode("200");
+			jsonCode.setTagCode(findCid);
+		} catch (Exception e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+			jsonCode.setStatusCode("400");
+			jsonCode.setTagCode("查询失败");
+		}		
+		return JsonOperator.toJson(jsonCode);
+	}
 }

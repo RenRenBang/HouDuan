@@ -32,8 +32,8 @@
 				<id column="oid" property="oid"/>
 				<result column="type" property="type" />
 				<result column="trade" property="trade"/>
-				<result column="start_time" property="startTime"/>
-				<result column="end_time" property="endTime"/>
+				<result column="start_time" property="startTime" javaType="java.util.Date"/>
+				<result column="end_time" property="endTime" javaType="java.util.Date"/>
 				<result column="title" property="title"/>
 				<result column="money" property="money"/>
 				<result column="odescribe" property="odescribe"/>
@@ -44,12 +44,17 @@
 				<result column="coll_num" property="collNum"/>
 			</association>
 		</resultMap>
-		<select id="findByUid" resultMap="Mycollection">
+		<select id="findByUid" resultMap="Mycollection" parameterType="java.lang.Integer">
 			select * from collection,cuser,corder 
 			where cuser.uid=collection.uid 
 				and collection.oid=corder.oid 
 				and collection.uid = #{uid} 
 			order by cid desc
+		</select>
+		
+		
+		<select id="findCidByUidOid" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+			select cid from collection where uid=#{uid} and oid=#{oid}
 		</select>
 	
 </mapper>

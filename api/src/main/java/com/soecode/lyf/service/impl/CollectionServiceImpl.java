@@ -37,4 +37,10 @@ public class CollectionServiceImpl implements CollectionService {
 		return collectionDao.findByUid(uid);
 	}
 
+	@Override
+	public String findCidByUidOid(int uid, int oid) {
+		// TODO 自动生成的方法存根
+		return collectionDao.findCidByUidOid(uid, oid)+"";
+	}
+
 }

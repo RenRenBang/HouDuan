@@ -11,8 +11,8 @@
 			<id column="oid" property="oid"/>
 			<result column="type" property="type" />
 			<result column="trade" property="trade"/>
-			<result column="start_time" property="startTime"/>
-			<result column="end_time" property="endTime"/>
+			<result column="start_time" property="startTime" javaType="java.util.Date"/>
+			<result column="end_time" property="endTime" javaType="java.util.Date"/>
 			<result column="title" property="title"/>
 			<result column="money" property="money"/>
 			<result column="odescribe" property="odescribe"/>

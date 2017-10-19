@@ -14,10 +14,8 @@
 			title,
 			money,
 			odescribe,
-			ophoto_path,
 			address,
 			ocount,
-			is_valid,
 			uid
 		)value(
 			#{type},
@@ -27,10 +25,8 @@
 			#{title},
 			#{money},
 			#{odescribe},
-			#{ophotoPath},
 			#{address},
 			#{ocount},
-			#{isValid},
 			#{cuser.uid}
 		)
 	</insert>
@@ -49,6 +45,7 @@
         <if test="title != '' and title != null">  
             and title like CONCAT('%', #{title}, '%')
         </if>  
+        and is_valid = 1
         order by start_time desc
 	</select>
 	
@@ -56,7 +53,7 @@
 		<id column="oid" property="oid"/>
 		<result column="type" property="type"/>
 		<result column="trade" property="trade"/>
-		<result column="end_time" property="endTime"/>
+		<result column="end_time" property="endTime" jdbcType="DATE"/>
 		<result column="title" property="title"/>
 		<result column="money" property="money"/>
 		<result column="odescribe" property="odescribe"/>
@@ -84,7 +81,7 @@
 	
 	oid,type,trade,end_time,title,money,odescribe,address,ocount,is_valid -->
 	<select id="queryCorderById" resultMap="CorderMap">
-		select * from corder,cuser where corder.uid=cuser.uid and oid=#{oid}
+		select * from corder,cuser where corder.uid=cuser.uid and oid=#{oid} and corder.is_valid = 1
 	</select>
 	
 	<delete id="deleteCorderById">
@@ -100,6 +97,7 @@
 		update corder set ocount=ocount-1 where oid= #{oid}
 	</update>
 	
+	<!-- 根据用户id查询发布的订单，失效了也需要进行显示 -->
 	<select id="queryCorderListById" resultType="com.soecode.lyf.entity.Corder">
 		select * from corder 
 		where uid=#{uid}
