@@ -44,12 +44,16 @@ public class CorderController {
 			corder.setMoney(Double.parseDouble("0"+request.getParameter("money")));
 			corder.setOcount(Integer.parseInt("0"+request.getParameter("ocount")));
 			// 处理时间戳问题
+			//接收和返回的都是时间戳类型的数据
+			//注意：java中的date对象的getTime是获取时间戳的。
 			String requestTime = request.getParameter("endTime");
 			java.util.Date date = null;
 			if(requestTime != null && requestTime != ""){
-				SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
 				try {
-					date = sdf.parse(requestTime);
+					SimpleDateFormat format =  new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
+					Long time=new Long(requestTime);  
+					String d = format.format(time);  
+					date=format.parse(d); 
 				} catch (ParseException e1) {
 					// TODO 自动生成的 catch 块
 					e1.printStackTrace();
@@ -75,8 +79,8 @@ public class CorderController {
 	@ResponseBody
 	@RequestMapping(value = "/queryCorderBy", method = RequestMethod.GET, produces = "text/json;charset=UTF-8")
 	private String queryCorderBy(@RequestParam("type") String type, @RequestParam("trade") String trade,
-			@RequestParam("title") String title) {
-		List<Corder> corderList = corderService.queryCorderList(type, trade, title);
+			@RequestParam("title") String title,@RequestParam("offset") int offset) {
+		List<Corder> corderList = corderService.queryCorderList(type, trade, title,offset);
 		JsonCode<Corder> jsonCode = new JsonCode<Corder>();
 		if (corderList.size() == 0) {
 			jsonCode.setStatusCode("400");
@@ -131,8 +135,8 @@ public class CorderController {
 
 	@ResponseBody
 	@RequestMapping(value = "/queryCorderListById", method = RequestMethod.GET, produces = "text/json;charset=UTF-8")
-	private String queryCorderListById(@RequestParam("uid") int uid) {
-		List<Corder> corderList = corderService.queryCorderListById(uid);
+	private String queryCorderListById(@RequestParam("uid") int uid,@RequestParam("type") String type) {
+		List<Corder> corderList = corderService.queryCorderListById(uid,type);
 		JsonCode<Corder> jsonCode = new JsonCode<Corder>();
 		if (corderList.size() != 0) {
 			jsonCode.setStatusCode("200");

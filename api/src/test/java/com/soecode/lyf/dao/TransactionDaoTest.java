@@ -26,7 +26,8 @@ public class TransactionDaoTest extends BaseTest{
 	@Test
 	public void queryTransactionByIdTest(){
 		int uid = 1;
-		List<Transaction> transactionList = transactionDao.queryTransactionById(uid);
+		String trade = "s";
+		List<Transaction> transactionList = transactionDao.queryTransactionById(uid,trade);
 		for(Transaction t:transactionList){
 			System.out.println(t.toString());
 		}

@@ -43,7 +43,8 @@ public class CorderDaoTest extends BaseTest{
 		String type = "s";
 		String trade = "家政";
 		String title = "大";
-		List<Corder> corderList = corderDao.queryCorderBy(type, trade, title);
+		int offset = 5;
+		List<Corder> corderList = corderDao.queryCorderBy(type, trade, title,offset);
 		for(Corder corder:corderList){
 			System.out.println(corder.toString());
 		}

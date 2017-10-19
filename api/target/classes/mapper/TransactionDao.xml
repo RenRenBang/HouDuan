@@ -40,7 +40,8 @@
 		where corder.oid=transaction.oid 
 			and transaction.uid=cuser.uid 
 			and transaction.uid=#{uid}
-			and is_valid = 0
+			and is_valid = 1
+			and type = #{type}
 		order by t_time desc
 		
 	</select>

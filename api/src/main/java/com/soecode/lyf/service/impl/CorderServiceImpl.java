@@ -25,9 +25,9 @@ public class CorderServiceImpl implements CorderService {
 	}
 
 	@Override
-	public List<Corder> queryCorderList(String type, String trade, String title) {
+	public List<Corder> queryCorderList(String type, String trade, String title,int offet) {
 		// TODO 自动生成的方法存根
-		return corderDao.queryCorderBy(type, trade, title);
+		return corderDao.queryCorderBy(type, trade, title,offet);
 	}
 
 	@Override
@@ -49,9 +49,9 @@ public class CorderServiceImpl implements CorderService {
 	}
 
 	@Override
-	public List<Corder> queryCorderListById(int uid) {
+	public List<Corder> queryCorderListById(int uid,String type) {
 		// TODO 自动生成的方法存根
-		return corderDao.queryCorderListById(uid);
+		return corderDao.queryCorderListById(uid,type);
 	}
 
 	@Override

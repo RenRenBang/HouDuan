@@ -3,6 +3,7 @@ package com.soecode.lyf.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
+import org.junit.runners.Parameterized.Parameters;
 
 import com.soecode.lyf.entity.Corder;
 
@@ -22,7 +23,7 @@ public interface CorderDao {
 	 * @param title
 	 * @return
 	 */
-	List<Corder> queryCorderBy(@Param("type") String type,@Param("trade") String trade,@Param("title") String title);
+	List<Corder> queryCorderBy(@Param("type") String type,@Param("trade") String trade,@Param("title") String title,@Param("offset") int offset);
 	
 	Corder queryCorderById(int oid);
 	
@@ -30,7 +31,7 @@ public interface CorderDao {
 	
 	void updateNum(@Param("num") String num,@Param("oid") int oid);
 	
-	List<Corder> queryCorderListById(int uid);
+	List<Corder> queryCorderListById(@Param("uid") int uid,@Param("type") String type);
 	
 	void cutCount(int oid);
 	

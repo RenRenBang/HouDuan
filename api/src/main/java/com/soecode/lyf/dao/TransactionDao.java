@@ -15,5 +15,5 @@ public interface TransactionDao {
 	 */
 	int addTransaction(@Param("oid") int oid,@Param("uid") int uid,@Param("releaseUid") int releaseUid);
 	
-	List<Transaction> queryTransactionById(int uid);
+	List<Transaction> queryTransactionById(@Param("uid") int uid,@Param("type") String type);
 }

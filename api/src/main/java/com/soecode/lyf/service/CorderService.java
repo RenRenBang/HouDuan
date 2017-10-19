@@ -8,7 +8,7 @@ public interface CorderService {
 
 	void addCorder(Corder corder);
 	
-	List<Corder> queryCorderList(String type ,String trade ,String title);
+	List<Corder> queryCorderList(String type ,String trade ,String title,int offset);
 	
 	void deleteCorderById(int oid);
 	
@@ -16,7 +16,7 @@ public interface CorderService {
 	
 	void updateNum(String num,int oid);
 	
-	List<Corder> queryCorderListById(int uid);
+	List<Corder> queryCorderListById(int uid,String type);
 	
 	void cutCount(int oid);
 }

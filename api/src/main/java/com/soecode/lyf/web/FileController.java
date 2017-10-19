@@ -122,7 +122,7 @@ public class FileController {
 					if (mFile != null) {
 
 						//获取文件后缀
-						String houzhui = mFile.getOriginalFilename().substring(mFile.getOriginalFilename().indexOf("."), mFile.getOriginalFilename().length()).toLowerCase();
+						String houzhui = mFile.getOriginalFilename().substring(mFile.getOriginalFilename().lastIndexOf("."), mFile.getOriginalFilename().length()).toLowerCase();
 						String fileName = uphone + houzhui;
 						String path = "/usr/local/httpd/htdocs/image/headImage/" + fileName;
 						System.out.println("单个文件上传路径" + path);
@@ -181,7 +181,7 @@ public class FileController {
 			for (int i = 0; i < files.length; i++) {
 				String fileName = files[i].getOriginalFilename();
 				System.out.println("文件原来的文件名:" + fileName);
-				houzhui = files[i].getOriginalFilename().substring(files[i].getOriginalFilename().indexOf("."), files[i].getOriginalFilename().length()).toLowerCase();
+				houzhui = files[i].getOriginalFilename().substring(files[i].getOriginalFilename().lastIndexOf("."), files[i].getOriginalFilename().length()).toLowerCase();
 				String newFileName = idNumber + "-" + i + houzhui;
 				System.out.println("服务器图片路径"+newFileName);
 

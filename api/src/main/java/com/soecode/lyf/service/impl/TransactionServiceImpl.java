@@ -26,9 +26,9 @@ public class TransactionServiceImpl implements TransactionService {
 	}
 
 	@Override
-	public List<Transaction> queryTransactionById(int uid) {
+	public List<Transaction> queryTransactionById(int uid,String type) {
 		// TODO 自动生成的方法存根
-		return transactionDao.queryTransactionById(uid);
+		return transactionDao.queryTransactionById(uid,type);
 	}
 
 }

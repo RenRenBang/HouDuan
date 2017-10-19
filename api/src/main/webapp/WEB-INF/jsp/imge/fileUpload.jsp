@@ -17,8 +17,7 @@
 <body>
 	<center>
 	===========单个文件上传======
-		<form action="onefile2"
-			method="post" enctype="multipart/form-data">
+		<form action="onefile2"	method="post" enctype="multipart/form-data">
 			uid<input type="text" name="uid" /> <br/>
 			uphone<input type="text" name="uphone" /> <br/>
 			<input type="file" name="file" /> <br/>

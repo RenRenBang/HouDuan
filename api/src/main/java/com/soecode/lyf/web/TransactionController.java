@@ -45,8 +45,8 @@ public class TransactionController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/queryTransactionById", method = RequestMethod.GET,produces = "text/json;charset=UTF-8")
-	private String queryTransactionById(@RequestParam("uid") int uid) {
-		List<Transaction> transactionList = transactionService.queryTransactionById(uid);
+	private String queryTransactionById(@RequestParam("uid") int uid,@RequestParam("type") String type) {
+		List<Transaction> transactionList = transactionService.queryTransactionById(uid,type);
 		JsonCode<Transaction> jsonCode = new JsonCode<Transaction>();
 		if(transactionList.size() == 0){
 			jsonCode.setStatusCode("400");
