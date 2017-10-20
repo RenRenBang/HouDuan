@@ -15,7 +15,7 @@ public interface CuserDao {
 	void addCuser(Cuser cuser);
 	
 	//修改
-	void updateCuser(Cuser cuser);
+	void updateCuser(@Param("uid") int uid,@Param("nickname") String nickname,@Param("password") String password);
 	
 	//根据id查用户
 	Cuser findByid(int uid);

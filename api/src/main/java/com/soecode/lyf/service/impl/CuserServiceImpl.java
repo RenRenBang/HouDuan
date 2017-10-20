@@ -27,9 +27,9 @@ public class CuserServiceImpl implements CuserService{
 	}
 
 	@Override
-	public void updateCuser(Cuser cuser) {
+	public void updateCuser(int uid,String nickname ,String password) {
 		// TODO Auto-generated method stub
-		cuserdao.updateCuser(cuser);
+		cuserdao.updateCuser(uid,nickname,password);
 	}
 
 	@Override

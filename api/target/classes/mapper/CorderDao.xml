@@ -45,7 +45,7 @@
         <if test="title != '' and title != null">  
             and title like CONCAT('%', #{title}, '%')
         </if>  
-        and is_valid = 1
+        and is_valid = 1 and ocount>0
         order by start_time desc limit #{offset},10
 	</select>
 	
@@ -95,6 +95,11 @@
 	
 	<update id="cutCount">
 		update corder set ocount=ocount-1 where oid= #{oid}
+	</update>
+	
+	
+	<update id="updateCorderByOb">
+		每个字段都需要修改？？？？
 	</update>
 	
 	<!-- 根据用户id查询发布的订单，失效了也需要进行显示 -->

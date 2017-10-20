@@ -10,7 +10,7 @@ public interface CuserService {
 	void addCuser(Cuser cuser);
 		
 	//修改
-	void updateCuser(Cuser cuser);
+	void updateCuser(int uid,String nickname,String password);
 	
 	//根据id查用户	
 	Cuser findByid(int uid);

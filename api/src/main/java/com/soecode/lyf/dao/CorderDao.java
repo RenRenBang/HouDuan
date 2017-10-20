@@ -35,4 +35,6 @@ public interface CorderDao {
 	
 	void cutCount(int oid);
 	
+	void updateCorderByOb(Corder corder);
+	
 }

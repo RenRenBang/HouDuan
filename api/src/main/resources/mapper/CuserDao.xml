@@ -29,15 +29,15 @@
 	
 	<!-- void updatecuser(Cuser cuser); -->
 	<update id="updateCuser">
-		update cuser set
-		uphone=#{uphone},
-		name=#{name},
-		nickname=#{nickname},
-		id_number=#{idNumber},
-		image=#{image},
-		photo_path=#{photoPath},
-		password=#{password},
-		profile=#{profile}
+		update cuser 
+		<trim prefix="set" suffixOverrides=",">
+			<if test="password != '' and password != null">
+				password = #{password},
+			</if>
+			<if test="nickname != '' and nickname != null">
+				nickname = #{nickname}
+			</if>
+		</trim>
 		where uid = #{uid}
 	</update>
 	<!-- Cuser findByid(int uid); -->

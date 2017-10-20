@@ -62,7 +62,13 @@ public class CheckCode {
 			// 设置手机号码 此处只能设置一个手机号码
 			message.setMobile(uphone);
 			// 设置内容
-			message.setContent("您的验证码是"+code+"，在5分钟内有效。如非本人操作请忽略本短信。");
+//			【人人帮】您的验证码是123456，在5分钟内有效。如非本人操作请忽略本短信。Young科技。
+//			尊敬的用户，您的订单已被手机号为15012341234的用户接单，请尽快联系该用户！
+			if(code.length() < 7 ){
+				message.setContent("【人人帮】您的验证码是"+code+"，在5分钟内有效。如非本人操作请忽略本短信。Young科技。");
+			} else {
+				message.setContent("尊敬的用户，您的订单已被手机号为"+code+"的用户接单，请尽快联系该用户！");
+			}
 			// 设置扩展号
 			message.setExno("11");
 			// 用户自定义流水编号

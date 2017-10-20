@@ -10,10 +10,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.soecode.lyf.entity.Corder;
 import com.soecode.lyf.entity.JsonCode;
 import com.soecode.lyf.entity.Transaction;
 import com.soecode.lyf.service.CorderService;
+import com.soecode.lyf.service.CuserService;
 import com.soecode.lyf.service.TransactionService;
+import com.soecode.lyf.utils.CheckCode;
 import com.soecode.lyf.utils.JsonOperator;
 
 @Controller
@@ -23,17 +26,35 @@ public class TransactionController {
 	private TransactionService transactionService;
 	@Autowired
 	private CorderService corderService;
+	@Autowired
+	private CuserService cuserService;
 
 	@ResponseBody
 	@RequestMapping(value = "/addTransaction", method = RequestMethod.GET,produces = "text/json;charset=UTF-8")
 	private String addTransaction(@Param("oid") int oid,@Param("uid") int uid) {
 		JsonCode jsonCode = new JsonCode<>();
 		try {
-			transactionService.addTransaction(oid,uid);
-			corderService.updateNum("gm_num", oid);
-			corderService.cutCount(oid);
-			jsonCode.setStatusCode("200");
-			jsonCode.setTagCode("交易添加成功");
+			Corder tempCorder = corderService.queryCorderById(oid);
+			if(tempCorder.getOcount()>1){
+				transactionService.addTransaction(oid,uid);
+				corderService.updateNum("gm_num", oid);
+				corderService.cutCount(oid);
+				if(tempCorder.getOcount() == 1){
+					tempCorder.setIsValid(0);
+					//更新订单的dao没有写？？？
+					//end_time的时间到期了订单is_valid修改为0;标记为失效
+				}
+//				String code = random.getRandomNum();
+				String corderPhone = corderService.queryCorderById(oid).getCuser().getUphone();
+				CheckCode checkCode = new CheckCode();
+				checkCode.f1(corderPhone, cuserService.findByid(uid).getUphone());
+				System.out.println("短信通知成功。");
+				jsonCode.setStatusCode("200");
+				jsonCode.setTagCode("交易添加OK,短信通知成功");				
+			} else {
+				jsonCode.setStatusCode("400");
+				jsonCode.setTagCode("交易添加失败人数少于1");
+			}
 		} catch (Exception e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();

@@ -218,10 +218,7 @@ public class CuserController {
 	@RequestMapping(value = "updateNameAndNick", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
 	public String updateNameAndNick(@RequestParam("uid") int uid, @RequestParam("password") String password,
 			@RequestParam("nickname") String nickname) {
-		Cuser cuser = cuserService.findByid(uid);
-		cuser.setPassword(password);
-		cuser.setNickname(nickname);
-		cuserService.updateCuser(cuser);
+		cuserService.updateCuser(uid, nickname, password);
 		JsonCode<Cuser> jsonCode = new JsonCode<Cuser>();
 		jsonCode.setStatusCode("200");
 		jsonCode.setTagCode("修改成功");

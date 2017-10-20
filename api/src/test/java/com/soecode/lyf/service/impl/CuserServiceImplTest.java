@@ -40,7 +40,9 @@ public class CuserServiceImplTest extends BaseTest{
 		int uid = 2;
 		Cuser cuser = cuserService.findByid(uid);
 		cuser.setPassword("111111");
-		cuserService.updateCuser(cuser);
+		String password = "";
+		String nickname = "";
+		cuserService.updateCuser(uid,nickname,password);
 	}
 
 }
