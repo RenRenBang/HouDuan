@@ -60,4 +60,16 @@ public class CorderServiceImpl implements CorderService {
 		corderDao.cutCount(oid);
 	}
 
+	@Override
+	public void updateCorderByIsValid(int oid, int isvalid) {
+		// TODO 自动生成的方法存根
+		corderDao.updateCorderByIsValid(oid, isvalid);
+	}
+
+	@Override
+	public void updateCorderByObject(Corder corder) {
+		// TODO 自动生成的方法存根
+		corderDao.updateCorderByObject(corder);
+	}
+
 }

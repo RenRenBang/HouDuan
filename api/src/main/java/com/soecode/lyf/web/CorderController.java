@@ -76,6 +76,62 @@ public class CorderController {
 		return JsonOperator.toJson(jsonCode);
 	}
 
+	//修改订单信息updateCorderByObject
+	@ResponseBody
+	@RequestMapping(value = "/updateCorderByObject", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+	private String updateCorderByObject(HttpServletRequest request) {
+		JsonCode<Corder> jsonCode = new JsonCode<Corder>();
+		try {
+			Cuser cuser = new Cuser();
+			Corder corder = new Corder();
+			//corder对象中的cuser在做插入的时候不需要完整的cuser信息，有id即可。所以这里不需要做cuser的查询。
+			//能取到uid的值就说明数据库中肯定有这个用户了
+			cuser.setUid(Integer.parseInt(request.getParameter("uid")));
+			corder.setCuser(cuser);
+			//修改需要获取订单的oid,隐藏字段，必须要有。
+			corder.setOid(Integer.parseInt(request.getParameter("oid")));
+			corder.setOdescribe(request.getParameter("odescribe"));
+			corder.setTitle(request.getParameter("title"));
+			corder.setTrade(request.getParameter("trade"));
+			corder.setType(request.getParameter("type"));
+			corder.setAddress(request.getParameter("address"));
+			corder.setMoney(Double.parseDouble("0"+request.getParameter("money")));
+			corder.setOcount(Integer.parseInt("0"+request.getParameter("ocount")));
+			// 处理时间戳问题
+			//接收和返回的都是时间戳类型的数据
+			//注意：java中的date对象的getTime是获取时间戳的。
+			String requestTime = request.getParameter("endTime");
+			java.util.Date date = null;
+			if(requestTime != null && requestTime != ""){
+				try {
+					SimpleDateFormat format =  new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
+					Long time=new Long(requestTime);  
+					String d = format.format(time);  
+					date=format.parse(d); 
+				} catch (ParseException e1) {
+					// TODO 自动生成的 catch 块
+					e1.printStackTrace();
+					System.out.println("时间转换错误");
+				}
+			}
+			corder.setEndTime(date);
+			
+			System.out.println("准备添加的订单"+corder.toString());
+			
+			corderService.updateCorderByObject(corder);
+			corderService.updateCorderByIsValid(corder.getOid(), 1);
+			jsonCode.setStatusCode("200");
+			jsonCode.setTagCode("修改订单成功");
+		} catch (Exception e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+			jsonCode.setStatusCode("400");
+			jsonCode.setTagCode("修改订单失败");
+		}
+		return JsonOperator.toJson(jsonCode);
+	}
+	
+	
 	@ResponseBody
 	@RequestMapping(value = "/queryCorderBy", method = RequestMethod.GET, produces = "text/json;charset=UTF-8")
 	private String queryCorderBy(@RequestParam("type") String type, @RequestParam("trade") String trade,

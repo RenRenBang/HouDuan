@@ -19,4 +19,9 @@ public interface CorderService {
 	List<Corder> queryCorderListById(int uid,String type);
 	
 	void cutCount(int oid);
+	
+	void updateCorderByIsValid(int oid,int isvalid);
+	
+	void updateCorderByObject(Corder corder);
+	
 }

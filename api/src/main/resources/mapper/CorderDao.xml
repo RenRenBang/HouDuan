@@ -21,7 +21,12 @@
 			#{type},
 			#{trade},
 			now(),
-			#{endTime},
+			<if test="endTime != '' and endTime != null">
+				#{endTime},
+			</if>
+			<if test="endTime == '' or endTime == null">
+				'2020-12-12 10:10:10',
+			</if>
 			#{title},
 			#{money},
 			#{odescribe},
@@ -45,7 +50,7 @@
         <if test="title != '' and title != null">  
             and title like CONCAT('%', #{title}, '%')
         </if>  
-        and is_valid = 1 and ocount>0
+        and is_valid = 1 and ocount>0 and end_time>now()
         order by start_time desc limit #{offset},10
 	</select>
 	
@@ -98,8 +103,23 @@
 	</update>
 	
 	
-	<update id="updateCorderByOb">
-		每个字段都需要修改？？？？
+	<update id="updateCorderByIsValid">
+		update corder set is_valid = #{isvalid} where oid = #{oid}
+	</update>
+	
+	
+	<update id="updateCorderByObject" parameterType="com.soecode.lyf.entity.Corder">
+		update corder set
+			type=#{type},
+			trade=#{trade},
+			end_time=#{endTime},
+			title=#{title},
+			money=#{money},
+			odescribe=#{odescribe},
+			address=#{address},
+			ocount=#{ocount},
+			uid=#{cuser.uid}
+		where oid = #{oid}
 	</update>
 	
 	<!-- 根据用户id查询发布的订单，失效了也需要进行显示 -->

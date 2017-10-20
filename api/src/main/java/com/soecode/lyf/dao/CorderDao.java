@@ -35,6 +35,10 @@ public interface CorderDao {
 	
 	void cutCount(int oid);
 	
-	void updateCorderByOb(Corder corder);
+	void updateCorderByIsValid(@Param("oid") int oid,@Param("isvalid") int isvalid);
+	
+	void updateCorderByObject(Corder corder);
+	
+	
 	
 }
