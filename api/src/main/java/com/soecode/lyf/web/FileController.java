@@ -148,13 +148,110 @@ public class FileController {
 		}
 		return JsonOperator.toJson(jsonCode);
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="/threeFile", method = RequestMethod.POST,produces = "text/json;charset=UTF-8")
+	public String oneFileUpload3(
+			@RequestParam("uid") int uid,
+			@RequestParam("idNumber") String idNumber,
+			@RequestParam("sign") String sign,
+			HttpServletRequest request,HttpServletResponse response) throws Exception {
+		JsonCode jsonCode = new JsonCode<>();
+		try {
+			CommonsMultipartResolver cmr = new CommonsMultipartResolver(request.getServletContext());
+			if (cmr.isMultipart(request)) {
+				MultipartHttpServletRequest mRequest = (MultipartHttpServletRequest) (request);
+				Iterator<String> files = mRequest.getFileNames();
+				while (files.hasNext()) {
+					MultipartFile mFile = mRequest.getFile(files.next());
+					if (mFile != null) {
+
+						//获取文件后缀
+						String houzhui = mFile.getOriginalFilename().substring(mFile.getOriginalFilename().lastIndexOf("."), mFile.getOriginalFilename().length()).toLowerCase();
+						String fileName = idNumber + "-" + sign + houzhui;
+						String path = "/usr/local/httpd/htdocs/image/idCardPhoto/" + fileName;
+
+//						String fileName = "testFile_" + mFile.getOriginalFilename();
+//						String path = "E:/upload/" + fileName;
+//						String path = "/usr/local/httpd/htdocs/image/tempImage/" + fileName;
+						System.out.println("身份证文件上传路径" + path);
+
+						//添加代码：如果没有路径需要先创建路径文件夹
+						File localFile = new File(path);
+						mFile.transferTo(localFile);
+//						jsonCode.setStatusCode("200");
+//						jsonCode.setTagCode("/image/headImage/" + fileName);
+//						cuserservice.updateImgeById(uid, "/image/headImage/" + fileName);
+						cuserservice.updatePhotoPathById(uid, "/image/idCardPhoto/"+idNumber+houzhui);
+						jsonCode.setTagCode(path);
+						jsonCode.setStatusCode("200");
+					}
+				}
+			}
+		} catch (Exception e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+			jsonCode.setStatusCode("400");
+			jsonCode.setTagCode("身份证文件上传失败");
+		}
+		return JsonOperator.toJson(jsonCode);
+	}
+	
+	//上传订单中的附加照片准备使用，添加到了corder的controller中了。
+	@ResponseBody
+	@RequestMapping(value="/fourthFile", method = RequestMethod.POST,produces = "text/json;charset=UTF-8")
+	public String oneFileUpload4(
+			@RequestParam("uid") int uid,
+			@RequestParam("idNumber") String idNumber,
+			@RequestParam("sign") String sign,
+			HttpServletRequest request,HttpServletResponse response) throws Exception {
+		JsonCode jsonCode = new JsonCode<>();
+		try {
+			CommonsMultipartResolver cmr = new CommonsMultipartResolver(request.getServletContext());
+			if (cmr.isMultipart(request)) {
+				MultipartHttpServletRequest mRequest = (MultipartHttpServletRequest) (request);
+				Iterator<String> files = mRequest.getFileNames();
+				while (files.hasNext()) {
+					MultipartFile mFile = mRequest.getFile(files.next());
+					if (mFile != null) {
+
+						//获取文件后缀
+						String houzhui = mFile.getOriginalFilename().substring(mFile.getOriginalFilename().lastIndexOf("."), mFile.getOriginalFilename().length()).toLowerCase();
+						String fileName = idNumber + "-" + sign + houzhui;
+						String path = "/usr/local/httpd/htdocs/image/idCardPhoto/" + fileName;
+
+//						String fileName = "testFile_" + mFile.getOriginalFilename();
+//						String path = "E:/upload/" + fileName;
+//						String path = "/usr/local/httpd/htdocs/image/tempImage/" + fileName;
+						System.out.println("身份证文件上传路径" + path);
+
+						//添加代码：如果没有路径需要先创建路径文件夹
+						File localFile = new File(path);
+						mFile.transferTo(localFile);
+//						jsonCode.setStatusCode("200");
+//						jsonCode.setTagCode("/image/headImage/" + fileName);
+//						cuserservice.updateImgeById(uid, "/image/headImage/" + fileName);
+						cuserservice.updatePhotoPathById(uid, "/image/idCardPhoto/"+idNumber+houzhui);
+						jsonCode.setTagCode(path);
+						jsonCode.setStatusCode("200");
+					}
+				}
+			}
+		} catch (Exception e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+			jsonCode.setStatusCode("400");
+			jsonCode.setTagCode("身份证文件上传失败");
+		}
+		return JsonOperator.toJson(jsonCode);
+	}
 
 	/**
 	 * 保存 文件到项目根目录下。。
 	 * 多个文件的上传。
 	 */
 	@ResponseBody
-	@RequestMapping("/threeFile")
+	@RequestMapping("/threeFile2")
 	public String threeFileUpload(
 			@RequestParam("uid") int uid,
 			@RequestParam("idNumber") String idNumber,

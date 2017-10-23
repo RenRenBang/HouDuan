@@ -1,12 +1,16 @@
 package com.soecode.lyf.web;
 
+import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import com.soecode.lyf.entity.Corder;
 import com.soecode.lyf.entity.Cuser;
@@ -29,7 +36,7 @@ public class CorderController {
 
 	@ResponseBody
 	@RequestMapping(value = "/addCorder", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
-	private String addCorder(HttpServletRequest request) {
+	private String addCorder(HttpServletRequest request,HttpServletResponse response) {
 		JsonCode<Corder> jsonCode = new JsonCode<Corder>();
 		try {
 			Cuser cuser = new Cuser();
@@ -47,20 +54,51 @@ public class CorderController {
 			//接收和返回的都是时间戳类型的数据
 			//注意：java中的date对象的getTime是获取时间戳的。
 			String requestTime = request.getParameter("endTime");
-			java.util.Date date = null;
-			if(requestTime != null && requestTime != ""){
+			System.out.println("request接收到的时间" + requestTime);
+			Date date = null;
+			if(requestTime != null && !"".equals(requestTime)){
 				try {
 					SimpleDateFormat format =  new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
 					Long time=new Long(requestTime);  
+					//时间戳的精度问题，需要乘以1000进行转换。
 					String d = format.format(time);  
 					date=format.parse(d); 
+					System.out.println("转换后的时间" + date);
 				} catch (ParseException e1) {
 					// TODO 自动生成的 catch 块
 					e1.printStackTrace();
 					System.out.println("时间转换错误");
 				}
+			} else {
+				System.out.println("接收到的end_time是空的。");
 			}
 			corder.setEndTime(date);
+			
+			//读取request中的多媒体文件
+			CommonsMultipartResolver cmr = new CommonsMultipartResolver(request.getServletContext());
+			if (cmr.isMultipart(request)) {
+				MultipartHttpServletRequest mRequest = (MultipartHttpServletRequest) (request);
+				Iterator<String> files = mRequest.getFileNames();
+				while (files.hasNext()) {
+					MultipartFile mFile = mRequest.getFile(files.next());
+					if (mFile != null) {
+
+						//获取文件后缀
+						String houzhui = mFile.getOriginalFilename().substring(mFile.getOriginalFilename().lastIndexOf("."), mFile.getOriginalFilename().length()).toLowerCase();
+						//重命名文件，uid+随机名
+						String fileName = cuser.getUid() + "_" + UUID.randomUUID() + houzhui;
+						//设置保存文件的路径
+						String path = "/usr/local/httpd/htdocs/image/orderImage/" + fileName;
+//						String path = "E:/upload/" + fileName;
+						//添加代码：如果没有路径需要先创建路径文件夹
+						File localFile = new File(path);
+						//将文件保存
+						mFile.transferTo(localFile);
+						//修改新建订单的图片
+						corder.setOphotoPath("/image/orderImage/" + fileName);
+					}
+				} 
+			}
 			
 			System.out.println("准备添加的订单"+corder.toString());
 			

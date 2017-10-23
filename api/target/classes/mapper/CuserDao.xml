@@ -21,10 +21,9 @@
 		nickname,
 		id_number,
 		image,
-		photo_path,
 		password,
 		profile
-		)values(#{uphone},#{name},#{nickname},#{idNumber},#{image},#{photoPath},#{password},#{profile})
+		)values(#{uphone},#{name},#{nickname},#{idNumber},'/image/headImage/timg.jpg',#{password},#{profile})
 	</insert>
 	
 	<!-- void updatecuser(Cuser cuser); -->
@@ -35,7 +34,10 @@
 				password = #{password},
 			</if>
 			<if test="nickname != '' and nickname != null">
-				nickname = #{nickname}
+				nickname = #{nickname},
+			</if>
+			<if test="profile != '' and profile != null">
+				profile = #{profile}
 			</if>
 		</trim>
 		where uid = #{uid}
@@ -63,9 +65,16 @@
 	<!-- //修改身份证照片
 	void updatePhotoPathById(int uid,String photoPath);
 	 -->
-	 <update id="updatePhotoPathById">
+	<update id="updatePhotoPathById">
 		update cuser set
 		photo_path= #{param2}
 		where uid = #{param1}
 	</update>
+	
+	<update id="updateCuserPw">
+		update cuser set
+		password = #{param2}
+		where uphone = #{param1}
+	</update>
+	
 </mapper>

@@ -15,7 +15,7 @@ public interface CuserDao {
 	void addCuser(Cuser cuser);
 	
 	//修改
-	void updateCuser(@Param("uid") int uid,@Param("nickname") String nickname,@Param("password") String password);
+	void updateCuser(@Param("uid") int uid,@Param("nickname") String nickname,@Param("password") String password,@Param("profile") String profile);
 	
 	//根据id查用户
 	Cuser findByid(int uid);
@@ -27,5 +27,7 @@ public interface CuserDao {
 	
 	//修改身份证照片
 	void updatePhotoPathById(int uid,String photoPath);
+	
+	void updateCuserPw(String uphone,String password);
 	
 }

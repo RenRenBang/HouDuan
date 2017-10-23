@@ -42,7 +42,8 @@ public class CuserServiceImplTest extends BaseTest{
 		cuser.setPassword("111111");
 		String password = "";
 		String nickname = "";
-		cuserService.updateCuser(uid,nickname,password);
+		String profile = "";
+		cuserService.updateCuser(uid,nickname,password,profile);
 	}
 
 }

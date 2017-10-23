@@ -44,6 +44,12 @@ public class HeadersCORSFilter implements Filter {
          response.setHeader("Access-Control-Max-Age", "3600");
          response.setHeader("Access-Control-Allow-Headers", "x-requested-with,Authorization");
          response.setHeader("Access-Control-Allow-Credentials","true");
+         
+         //设置禁用浏览器缓冲，但是全局的修改禁用，会不会影响其他例如用户信息的缓冲的功能？？？/待测试
+        /* response.setHeader("If-Modified-Since", "0");
+         response.setHeader("Cache-Control", "no-cache");  
+         response.setHeader("Pragma", "no-cache");  
+         response.setDateHeader("Expires", -1);  */
          chain.doFilter(request, servletResponse);
 		// pass the request along the filter chain
 	}

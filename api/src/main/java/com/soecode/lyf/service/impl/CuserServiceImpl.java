@@ -27,9 +27,9 @@ public class CuserServiceImpl implements CuserService{
 	}
 
 	@Override
-	public void updateCuser(int uid,String nickname ,String password) {
+	public void updateCuser(int uid,String nickname ,String password,String profile) {
 		// TODO Auto-generated method stub
-		cuserdao.updateCuser(uid,nickname,password);
+		cuserdao.updateCuser(uid,nickname,password,profile);
 	}
 
 	@Override
@@ -54,6 +54,12 @@ public class CuserServiceImpl implements CuserService{
 	public void updatePhotoPathById(int uid, String photoPath) {
 		// TODO Auto-generated method stub
 		cuserdao.updatePhotoPathById(uid, photoPath);
+	}
+
+	@Override
+	public void updateCuserPw(String uphone, String password) {
+		// TODO 自动生成的方法存根
+		cuserdao.updateCuserPw(uphone,password);
 	}
 	
 

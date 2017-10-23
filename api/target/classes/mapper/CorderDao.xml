@@ -16,26 +16,41 @@
 			odescribe,
 			address,
 			ocount,
-			uid
+			uid,
+			ophoto_path
 		)value(
 			#{type},
 			#{trade},
 			now(),
-			<if test="endTime != '' and endTime != null">
+			<if test="endTime != null">
 				#{endTime},
 			</if>
-			<if test="endTime == '' or endTime == null">
+			<if test="endTime == null">
 				'2020-12-12 10:10:10',
 			</if>
 			#{title},
 			#{money},
 			#{odescribe},
 			#{address},
-			#{ocount},
-			#{cuser.uid}
+			<if test='type == "n"'>
+				#{ocount},
+			</if>
+			<if test='type == "s"'>
+				20,
+			</if>
+			#{cuser.uid},
+			#{ophotoPath}
 		)
 	</insert>
 	
+	<!-- endTime是Timestamp类型数据
+		不能和 
+			<if test="endTime != '' and endTime != null">
+				#{endTime},
+			</if>
+			<if test="endTime == '' or endTime == null">
+				'2020-12-12 10:10:10',
+			</if> -->
 	
 	<select id = "queryCorderBy" resultType="com.soecode.lyf.entity.Corder">
 		select *

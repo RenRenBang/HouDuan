@@ -47,7 +47,8 @@ public class CuserDaoTest extends BaseTest{
 		int uid = 2;
 		String password = "";
 		String nickname = "";
+		String profile = "";
 		Cuser cuser = new Cuser(6, "15112341234", "job", "job", "123456789", null, null, "123456", null);
-		cuserdao.updateCuser(uid,nickname,password);
+		cuserdao.updateCuser(uid,nickname,password,profile);
 	}
 }
