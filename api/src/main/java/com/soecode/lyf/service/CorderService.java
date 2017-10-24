@@ -12,6 +12,8 @@ public interface CorderService {
 	
 	void deleteCorderById(int oid);
 	
+	void isValidCorderById(int isValid ,int oid);
+	
 	Corder queryCorderById(int oid);
 	
 	void updateNum(String num,int oid);

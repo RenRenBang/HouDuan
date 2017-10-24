@@ -101,12 +101,17 @@
 	
 	oid,type,trade,end_time,title,money,odescribe,address,ocount,is_valid -->
 	<select id="queryCorderById" resultMap="CorderMap">
-		select * from corder,cuser where corder.uid=cuser.uid and oid=#{oid} and corder.is_valid = 1
+		select * from corder,cuser where corder.uid=cuser.uid and oid=#{oid}
 	</select>
 	
 	<delete id="deleteCorderById">
 		delete from corder where oid = #{oid}
 	</delete>
+	
+	
+	<update id="isValidCorderById">
+		update corder set is_valid = #{isValid} where oid = #{oid} and ocount > 0
+	</update>
 	
 	<update id="updateNum">
 		update corder set ${num}=${num}+1 where oid= #{oid}
@@ -137,7 +142,7 @@
 		where oid = #{oid}
 	</update>
 	
-	<!-- 根据用户id查询发布的订单，失效了也需要进行显示 -->
+	<!-- 根据用户id查询发布的订单，失效了也需要进行显示 ,因为用户可能要进行修改，用户对自己的订单要有最大的权限-->
 	<select id="queryCorderListById" resultType="com.soecode.lyf.entity.Corder">
 		select * from corder 
 		where uid=#{uid} and type=#{type}

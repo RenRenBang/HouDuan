@@ -115,6 +115,7 @@ public class CorderController {
 	}
 
 	//修改订单信息updateCorderByObject
+	//修改定单中不允许修改图片文件，修改只是针对小毛病修改，如果改动太多，建议删除重新发布订单。
 	@ResponseBody
 	@RequestMapping(value = "/updateCorderByObject", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
 	private String updateCorderByObject(HttpServletRequest request) {
@@ -210,6 +211,33 @@ public class CorderController {
 		return JsonOperator.toJson(jsonCode);
 	}
 
+	/**
+	 * 通过oid将订单标记为无效 is_valid = 0;
+	 * @param oid
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/updateCorderIsValidById", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+	private String updateCorderIsValidById(@RequestParam("isValid") int isValid,@RequestParam("oid") int oid) {
+		JsonCode<Corder> jsonCode = new JsonCode<Corder>();
+		try {
+			corderService.isValidCorderById(isValid,oid);
+			jsonCode.setStatusCode("200");
+			jsonCode.setTagCode("订单状态需改成功");
+		} catch (Exception e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+			jsonCode.setStatusCode("400");
+			jsonCode.setTagCode("订单状态修改失败");
+		}
+		return JsonOperator.toJson(jsonCode);
+	}
+	
+	/**
+	 *通过oid，删除整个订单的信息。 
+	 * @param oid
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping(value = "/deleteCorderById", method = RequestMethod.GET, produces = "text/json;charset=UTF-8")
 	private String deleteCorderById(@RequestParam("oid") int oid) {

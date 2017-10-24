@@ -72,4 +72,10 @@ public class CorderServiceImpl implements CorderService {
 		corderDao.updateCorderByObject(corder);
 	}
 
+	@Override
+	public void isValidCorderById(int isValid,int oid) {
+		// TODO 自动生成的方法存根
+		corderDao.isValidCorderById(isValid,oid);
+	}
+
 }
