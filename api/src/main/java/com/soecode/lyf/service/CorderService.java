@@ -12,7 +12,7 @@ public interface CorderService {
 	
 	void deleteCorderById(int oid);
 	
-	void isValidCorderById(int isValid ,int oid);
+	Integer isValidCorderById(int isValid ,int oid);
 	
 	Corder queryCorderById(int oid);
 	

@@ -29,7 +29,7 @@ public interface CorderDao {
 	
 	void deleteCorderById(int oid);
 	
-	void isValidCorderById(@Param("isValid") int isValid ,@Param("oid") int oid);
+	Integer isValidCorderById(@Param("isValid") int isValid ,@Param("oid") int oid);
 	
 	void updateNum(@Param("num") String num,@Param("oid") int oid);
 	

@@ -221,9 +221,16 @@ public class CorderController {
 	private String updateCorderIsValidById(@RequestParam("isValid") int isValid,@RequestParam("oid") int oid) {
 		JsonCode<Corder> jsonCode = new JsonCode<Corder>();
 		try {
-			corderService.isValidCorderById(isValid,oid);
-			jsonCode.setStatusCode("200");
-			jsonCode.setTagCode("订单状态需改成功");
+			int temp = corderService.isValidCorderById(isValid,oid);
+			System.out.println("修改失效订单受影响的行数是：" + temp);
+			//接下来对temp进行判断，如果大于0证明修改成功了，如过小于0证明修改失败了。肯能是ocount<0的定单不能修改为有效，只能进行整个订单的修改了ocount。
+			if(temp != 0){
+				jsonCode.setStatusCode("200");
+				jsonCode.setTagCode("订单状态需改成功");
+			} else {
+				jsonCode.setStatusCode("300");
+				jsonCode.setTagCode("订单状态修改失败,有效订单需求人数不能为0");
+			}
 		} catch (Exception e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
