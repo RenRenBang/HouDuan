@@ -9,7 +9,7 @@
 <body>
 
 	<%
-		response.sendRedirect("toFile");
+		response.sendRedirect("begin");
 	%>
 </body>
 </html>

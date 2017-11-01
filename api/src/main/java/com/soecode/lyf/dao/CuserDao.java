@@ -27,7 +27,8 @@ public interface CuserDao {
 	
 	//修改身份证照片
 	void updatePhotoPathById(int uid,String photoPath);
-	
+
+	//修改用户登录密码
 	void updateCuserPw(String uphone,String password);
 	
 }
