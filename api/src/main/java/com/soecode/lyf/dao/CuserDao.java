@@ -20,6 +20,7 @@ public interface CuserDao {
 	//根据id查用户
 	Cuser findByid(int uid);
 	
+	//通过手机号查询用户信息
 	Cuser findCuserByPhone(String uphone);
 	
 	//修改头像

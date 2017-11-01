@@ -44,6 +44,8 @@
 				<result column="coll_num" property="collNum"/>
 			</association>
 		</resultMap>
+
+		<!--查询用户收藏-->
 		<select id="findByUid" resultMap="Mycollection" parameterType="java.lang.Integer">
 			select * from collection,cuser,corder 
 			where cuser.uid=collection.uid 
@@ -52,7 +54,7 @@
 			order by cid desc
 		</select>
 		
-		
+		<!--根据oid和uid查询用户收藏的cid-->
 		<select id="findCidByUidOid" resultType="java.lang.Integer" parameterType="java.lang.Integer">
 			select cid from collection where uid=#{uid} and oid=#{oid}
 		</select>

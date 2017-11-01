@@ -7,6 +7,7 @@ import com.montnets.mwgate.smsutil.SmsSendConn;
 
 public class CheckCode {
 	/**
+	 * 发送短信验证码的工具类，使用第三方的服务，<梦网云>
 	 * @description 设置用户账号信息
 	 */
 	// 设置用户账号信息

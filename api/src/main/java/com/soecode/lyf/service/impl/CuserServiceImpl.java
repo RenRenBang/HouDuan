@@ -13,6 +13,10 @@ public class CuserServiceImpl implements CuserService{
 	//需要dao对象会自动注入
 	@Autowired
 	private CuserDao cuserdao;
+
+	/**
+	 * 项目结构需要修改的地方：：：将业务处理的代码转移到service层，不能都放在controller层。
+	 */
 	
 	@Override
 	public Cuser login(String uphone, String password) {

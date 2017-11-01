@@ -22,6 +22,7 @@ CREATE TABLE `cuser` (
   `photo_path` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `password` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `profile` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  'is_pass' VARCHAR(2) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 

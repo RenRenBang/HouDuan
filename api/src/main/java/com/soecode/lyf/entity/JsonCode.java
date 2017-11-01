@@ -8,6 +8,10 @@ public class JsonCode<T> {
 	private List<T> data;
 	private String tagCode;
 	
+	/**
+	 * 该类的作用，为下一步转换为json数据的对象进行一次数据格式的统一。
+	 * 
+	 */
 	public JsonCode() {	}
 
 	/**

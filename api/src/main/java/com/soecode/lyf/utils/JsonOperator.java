@@ -6,6 +6,10 @@ import com.alibaba.fastjson.JSON;
 
 public class JsonOperator {
 
+	/**
+	 * 对象与json数据转换的工具类
+	 */
+
 	public static String toJson(Object obj){
 		
 		return JSON.toJSONString(obj);

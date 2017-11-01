@@ -15,3 +15,6 @@ linary_liang
 5.springmvc+spring+mybatis
 
 6.目前项目状态，使用ssm框架模板在maven中搭建成功，下一步修改框架模板中的代码，改为自己项目对应的逻辑。
+
+
+项目描述：功能结合为添加。技术结合需要详细补充。

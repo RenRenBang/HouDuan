@@ -5,23 +5,23 @@ import java.util.Date;
 public class Corder {
 
 	private int oid;
-	private String type;
-	private String trade;
+	private String type;//类型，需求或者服务，应该枚举类型变量
+	private String trade;//订单所属的行业分类
 	private Date startTime;
 	private Date endTime;
 	private String title;
 	private double money;
-	private String odescribe;
+	private String odescribe;//订单详细描述
 	private String ophotoPath;
 	private String address;
-	private int ocount;
-	private int isValid;
-	private int gmNum;
-	private int collNum;
+	private int ocount;//需求类订单的需求人数
+	private int isValid;//订单是否有效
+	private int gmNum;//购买过的数量
+	private int collNum;//收藏过的数量
 	
 //	private int uid;
 	
-	private Cuser cuser;
+	private Cuser cuser;//订单发布人
 	
 	public Corder(){}
 	

@@ -89,7 +89,7 @@ public class CorderController {
 						String fileName = cuser.getUid() + "_" + UUID.randomUUID() + houzhui;
 						//设置保存文件的路径
 						String path = "/usr/local/httpd/htdocs/image/orderImage/" + fileName;
-//						String path = "E:/upload/" + fileName;
+						//String path = "E:/upload/" + fileName;
 						//添加代码：如果没有路径需要先创建路径文件夹
 						File localFile = new File(path);
 						//将文件保存
@@ -262,6 +262,9 @@ public class CorderController {
 		return JsonOperator.toJson(jsonCode);
 	}
 
+	/**
+	 *根据用户id查询该用户发布的订单。
+	 */
 	@ResponseBody
 	@RequestMapping(value = "/queryCorderListById", method = RequestMethod.GET, produces = "text/json;charset=UTF-8")
 	private String queryCorderListById(@RequestParam("uid") int uid,@RequestParam("type") String type) {
