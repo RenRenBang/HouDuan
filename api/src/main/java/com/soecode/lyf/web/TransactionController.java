@@ -60,11 +60,12 @@ public class TransactionController {
 					corderService.updateCorderByIsValid(oid, 0);
 					//end_time的时间到期了订单is_valid修改为0;标记为失效
 				}
-//				String code = random.getRandomNum();
+				
 				//这些业务上的处理，应该都放在service层，返回jsonCode对象，不应该在这里进行处理，懒的修改了。
-				String corderPhone = corderService.queryCorderById(oid).getCuser().getUphone();
+				//用户订单被接单以后发短信通知发单用户，功能已通过测试，测试期间暂时关闭发送短信通知。
+				/*String corderPhone = corderService.queryCorderById(oid).getCuser().getUphone();
 				CheckCode checkCode = new CheckCode();
-				checkCode.f1(corderPhone, cuserService.findByid(uid).getUphone());
+				checkCode.f1(corderPhone, cuserService.findByid(uid).getUphone());*/
 				System.out.println("短信通知成功。");
 				jsonCode.setStatusCode("200");
 				jsonCode.setTagCode("交易添加OK,短信通知成功");				
