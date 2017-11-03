@@ -53,7 +53,7 @@ public class TransactionController {
 				corderService.updateNum("gm_num", oid);
 				corderService.cutCount(oid);
 				//偷懒了，没有再次查询数据库中更新的记录，而是判断了没有 -1 以前的数据，和1进行了比较
-				if(tempCorder.getOcount() == 1){
+				if(tempCorder.getOcount() == 0){
 					tempCorder.setIsValid(0);
 					System.out.println("订单count不足，修改订单失效");
 					//更新订单的dao没有写？？？
