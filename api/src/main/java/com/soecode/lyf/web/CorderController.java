@@ -88,7 +88,7 @@ public class CorderController {
 						//重命名文件，uid+随机名
 						String fileName = cuser.getUid() + "_" + UUID.randomUUID() + houzhui;
 						//设置保存文件的路径
-						String path = "/usr/local/httpd/htdocs/image/orderImage/" + fileName;
+						String path = "/usr/local/nginx/html/image/orderImage/" + fileName;
 						//String path = "E:/upload/" + fileName;
 						//添加代码：如果没有路径需要先创建路径文件夹
 						File localFile = new File(path);

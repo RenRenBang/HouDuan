@@ -124,7 +124,7 @@ public class FileController {
 						//获取文件后缀
 						String houzhui = mFile.getOriginalFilename().substring(mFile.getOriginalFilename().lastIndexOf("."), mFile.getOriginalFilename().length()).toLowerCase();
 						String fileName = uphone + houzhui;
-						String path = "/usr/local/httpd/htdocs/image/headImage/" + fileName;
+						String path = "/usr/local/nginx/html/image/headImage/" + fileName;
 						System.out.println("单个文件上传路径" + path);
 
 					/*	String fileName = "testFile_" + mFile.getOriginalFilename();
@@ -169,7 +169,7 @@ public class FileController {
 						//获取文件后缀
 						String houzhui = mFile.getOriginalFilename().substring(mFile.getOriginalFilename().lastIndexOf("."), mFile.getOriginalFilename().length()).toLowerCase();
 						String fileName = idNumber + "-" + sign + houzhui;
-						String path = "/usr/local/httpd/htdocs/image/idCardPhoto/" + fileName;
+						String path = "/usr/local/nginx/html/image/idCardPhoto/" + fileName;
 
 //						String fileName = "testFile_" + mFile.getOriginalFilename();
 //						String path = "E:/upload/" + fileName;
@@ -218,7 +218,7 @@ public class FileController {
 						//获取文件后缀
 						String houzhui = mFile.getOriginalFilename().substring(mFile.getOriginalFilename().lastIndexOf("."), mFile.getOriginalFilename().length()).toLowerCase();
 						String fileName = idNumber + "-" + sign + houzhui;
-						String path = "/usr/local/httpd/htdocs/image/idCardPhoto/" + fileName;
+						String path = "/usr/local/nginx/html/image/idCardPhoto/" + fileName;
 
 //						String fileName = "testFile_" + mFile.getOriginalFilename();
 //						String path = "E:/upload/" + fileName;
@@ -257,7 +257,7 @@ public class FileController {
 			@RequestParam("idNumber") String idNumber,
 			@RequestParam("file") CommonsMultipartFile files[],HttpServletRequest request, ModelMap model) {
 		JsonCode jsonCode = new JsonCode<>();
-		String path = "/usr/local/httpd/htdocs/image/idCardPhoto/";
+		String path = "/usr/local/nginx/html/image/idCardPhoto/";
 		try {
 			List<String> listFile = new ArrayList<String>();
 			// 获取项目当前相对路径
