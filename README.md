@@ -6,6 +6,8 @@
 
 注: 关于“人人帮”这个名字，名字是自己瞎起的，没有任何商业性活动，仅用作自己学习使用，如有冲突请联系删除。
 
+<a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=D3ZuYGdqYWhQY2ZPfn4hbGBi" style="text-decoration:none;"><img src="http://rescdn.qqmail.com/zh_CN/htmledition/images/function/qm_open/ico_mailme_02.png"/></a>
+
 ---
 ##### 项目说明
 
